@@ -1,7 +1,2 @@
-﻿  main.cpp
-  code.cpp
-  constants.cpp
-  aiko.cpp
-  lab.cpp
-  Generating Code...
+﻿  labyrinth.cpp
   Aiko.vcxproj -> C:\Users\Jose\Code\aiko_engine\Debug\Aiko.exe

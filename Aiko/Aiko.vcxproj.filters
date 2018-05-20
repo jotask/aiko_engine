@@ -18,27 +18,21 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\code.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\lab.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\constants.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\aiko.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\labyrinth\labyrinth.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\code_art_lines\code.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\code.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\constants.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="src\lab.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\kimo.h">
@@ -48,6 +42,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\aiko.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\labyrinth\labyrinth.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\code_art_lines\code.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

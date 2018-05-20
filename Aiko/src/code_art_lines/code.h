@@ -1,12 +1,12 @@
 #pragma once
 
-#include "constants.h"
+#include "../constants.h"
 
 #include <SFML/Graphics.hpp>
 
 #include <vector>
 
-#include "engine/kimo.h"
+#include "../engine/kimo.h"
 
 // forward declarations
 namespace sf

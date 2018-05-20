@@ -3,7 +3,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 
-#include "engine/kimo.h"
+#include "../engine/kimo.h"
 
 class Cell
 {

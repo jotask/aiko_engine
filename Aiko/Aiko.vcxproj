@@ -161,17 +161,17 @@
   <ItemGroup>
     <ClCompile Include="src\engine\aiko.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="src\code.cpp" />
+    <ClCompile Include="src\code_art_lines\code.cpp" />
     <ClCompile Include="src\constants.cpp" />
-    <ClCompile Include="src\lab.cpp" />
+    <ClCompile Include="src\labyrinth\labyrinth.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\aiko.h" />
-    <ClInclude Include="src\code.h" />
+    <ClInclude Include="src\code_art_lines\code.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\engine\kimo.h" />
     <ClInclude Include="src\engine\time.h" />
-    <ClInclude Include="src\lab.h" />
+    <ClInclude Include="src\labyrinth\labyrinth.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

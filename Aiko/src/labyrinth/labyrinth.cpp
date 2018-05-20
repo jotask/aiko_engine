@@ -1,6 +1,6 @@
-#include "lab.h"
+#include "labyrinth.h"
 
-#include "constants.h"
+#include "../constants.h"
 
 Cell::Cell(float x, float y)
 {

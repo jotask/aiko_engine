@@ -9,8 +9,8 @@
 
 // aiko
 #include "../constants.h"
-#include "../code.h"
-#include "../lab.h"
+#include "../code_art_lines/code.h"
+#include "../labyrinth/labyrinth.h"
 #include "time.h"
 
 Aiko::Aiko()
