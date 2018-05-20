@@ -20,4 +20,4 @@ int random(int low, int high);
 
 enum class STATE { LABYRINTH, CODE }; // enum class
 
-#define START_STATE STATE::CODE;
+#define START_STATE STATE::LABYRINTH
