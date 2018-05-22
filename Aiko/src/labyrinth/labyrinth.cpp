@@ -33,8 +33,6 @@ void Cell::update(const TimeStamp& delta)
 
 void Cell::render(sf::RenderWindow& window)
 {
-    // window.draw(rect);
-
     window.draw(line, 2, sf::Lines);
 
 }

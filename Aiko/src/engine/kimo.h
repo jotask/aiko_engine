@@ -1,7 +1,11 @@
 #pragma once
 
-#include "time.h"
+// sfml
 #include <SFML/Graphics.hpp>
+
+// aiko
+#include "time.h"
+#include "../constants.h"
 
 class Kimo
 {

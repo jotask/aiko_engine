@@ -2,8 +2,8 @@
 
 #include <random>
 
-#define WIDTH 640
-#define HEIGHT 480 // 360
+#define WIDTH 800
+#define HEIGHT 600 // 360
 
 int random(int low, int high);
 
@@ -18,6 +18,6 @@ int random(int low, int high);
    OutputDebugStringW( os_.str().c_str() );  \
 }
 
-enum class STATE { LABYRINTH, CODE }; // enum class
+enum class STATE { LABYRINTH, CODE, FLAPPYBIRD }; // enum class
 
-#define START_STATE STATE::LABYRINTH
+#define START_STATE STATE::FLAPPYBIRD

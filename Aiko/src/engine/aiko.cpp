@@ -11,6 +11,7 @@
 #include "../constants.h"
 #include "../code_art_lines/code.h"
 #include "../labyrinth/labyrinth.h"
+#include "../flappy_bird/flappy_bird.h"
 #include "time.h"
 
 Aiko::Aiko()
@@ -35,6 +36,9 @@ void Aiko::init()
         break;
     case STATE::CODE:
         m_kimo.reset(new Code());
+        break;
+    case STATE::FLAPPYBIRD:
+        m_kimo.reset(new FlappyBird());
         break;
     default:
         assert(false);

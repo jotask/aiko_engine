@@ -163,7 +163,12 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\code_art_lines\code.cpp" />
     <ClCompile Include="src\constants.cpp" />
+    <ClCompile Include="src\flappy_bird\bird.cpp" />
+    <ClCompile Include="src\flappy_bird\entity.cpp" />
+    <ClCompile Include="src\flappy_bird\flappy_bird.cpp" />
+    <ClCompile Include="src\flappy_bird\pipe.cpp" />
     <ClCompile Include="src\labyrinth\labyrinth.cpp" />
+    <ClCompile Include="src\engine\utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\aiko.h" />
@@ -171,7 +176,12 @@
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\engine\kimo.h" />
     <ClInclude Include="src\engine\time.h" />
+    <ClInclude Include="src\flappy_bird\bird.h" />
+    <ClInclude Include="src\flappy_bird\entity.h" />
+    <ClInclude Include="src\flappy_bird\flappy_bird.h" />
+    <ClInclude Include="src\flappy_bird\pipe.h" />
     <ClInclude Include="src\labyrinth\labyrinth.h" />
+    <ClInclude Include="src\engine\utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
