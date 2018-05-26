@@ -3,7 +3,7 @@
 #include "../engine/utils.h"
 
 Bird::Bird()
-    : Entity( new sf::CircleShape(30.0f, 30U))
+    : Entity( std::make_unique<sf::CircleShape>(30.0f, 30U) )
 {
 
 }

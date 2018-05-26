@@ -12,6 +12,7 @@
 #include "../code_art_lines/code.h"
 #include "../labyrinth/labyrinth.h"
 #include "../flappy_bird/flappy_bird.h"
+#include "physics/physics.h"
 #include "time.h"
 
 Aiko::Aiko()
@@ -28,6 +29,8 @@ Aiko::~Aiko()
 
 void Aiko::init()
 {
+
+    Physics::get();
 
     switch (m_state)
     {
@@ -49,8 +52,6 @@ void Aiko::init()
 void Aiko::run()
 {
 
-    // assert(m_kimo != nullptr);
-
     sf::RenderWindow renderWindow;
     sf::Event event;
     sf::Clock clock;
@@ -61,6 +62,9 @@ void Aiko::run()
 
     init();
 
+    auto& physics = Physics::get();
+    physics.init(renderWindow);
+
     TimeStamp timeStamp;
 
     while (renderWindow.isOpen()) {
@@ -68,7 +72,10 @@ void Aiko::run()
         while (renderWindow.pollEvent(event)) {
             //Handle events here
             if (event.type == sf::Event::EventType::Closed)
+            {
                 renderWindow.close();
+            }
+            physics.input(event);
         }
 
         // A microsecond is 1/1,000,000th of a second, 1000 microseconds == 1 millisecond
@@ -78,11 +85,13 @@ void Aiko::run()
         // Start the countdown over.  Think of laps on a stop watch.
         clock.restart();
         // update start
+        physics.update(timeStamp);
         m_kimo->update(timeStamp);
         // update end
         renderWindow.clear();
         // renderstar
-        m_kimo->render(renderWindow);
+        physics.render(renderWindow);
+        //m_kimo->render(renderWindow);
         // render end
         renderWindow.display();
     }

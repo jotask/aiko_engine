@@ -12,7 +12,7 @@ FlappyBird::FlappyBird()
     //m_entities.push_back(std::make_unique<Bird>());
     // ad the pipes
 
-    constexpr unsigned int MANY = 10;
+    constexpr unsigned int MANY = 25;
 
     for (unsigned int i = 0; i < MANY; ++i)
     {
@@ -25,6 +25,7 @@ FlappyBird::FlappyBird()
 
 void FlappyBird::update(const TimeStamp& delta)
 {
+
     for (unsigned int i = 0; i < m_entities.size(); ++i)
     {
         Entity* entity = m_entities[i].get();

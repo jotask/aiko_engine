@@ -1,2 +1,9 @@
-﻿  entity.cpp
+﻿  aiko.cpp
+  entity.cpp
+  SFMLDebugDraw.cpp
+  physics.cpp
+  bird.cpp
+  flappy_bird.cpp
+  pipe.cpp
+  Generating Code...
   Aiko.vcxproj -> C:\Users\Jose\Code\aiko_engine\Debug\Aiko.exe

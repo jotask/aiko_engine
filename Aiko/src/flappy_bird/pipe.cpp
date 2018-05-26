@@ -1,7 +1,7 @@
 #include "pipe.h"
 
 Pipe::Pipe()
-    : Entity(new sf::RectangleShape(sf::Vector2f(10.0f, 10.0f)))
+    : Entity(std::make_unique<sf::RectangleShape>(sf::Vector2f(10.0f, 10.0f)))
 {
 
 }

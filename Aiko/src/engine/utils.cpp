@@ -1,6 +1,11 @@
 #include "utils.h"
 
 
+float Utils::random1D()
+{
+    return Utils::random1D(0.0f, 1.0f);
+}
+
 float Utils::random1D(float min, float max)
 {
     std::random_device rd;  //Will be used to obtain a seed for the random number engine

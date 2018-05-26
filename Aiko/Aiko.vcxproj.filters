@@ -33,9 +33,6 @@
     <ClCompile Include="src\flappy_bird\flappy_bird.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\flappy_bird\entity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="src\flappy_bird\bird.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -43,6 +40,18 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="src\engine\utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\physics\physics.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\physics\Box2d_TEMP.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\engine\physics\SFMLDebugDraw.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -68,9 +77,6 @@
     <ClInclude Include="src\flappy_bird\flappy_bird.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\flappy_bird\entity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="src\flappy_bird\bird.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -78,6 +84,18 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\engine\utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\physics\physics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\physics\Box2D_TEMP.hpp">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\engine\physics\SFMLDebugDraw.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

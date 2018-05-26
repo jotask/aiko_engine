@@ -4,7 +4,7 @@
 #include <memory>
 
 #include "../engine/kimo.h"
-#include "entity.h"
+#include "../engine/entity.h"
 
 class FlappyBird : public Kimo
 {

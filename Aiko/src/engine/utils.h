@@ -7,6 +7,7 @@ class Utils
 {
 public:
 
+    static float random1D();
     static float random1D(float min, float max);
 
     static sf::Vector2f randomPointInScreen();

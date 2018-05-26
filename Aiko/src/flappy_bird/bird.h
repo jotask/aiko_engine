@@ -1,10 +1,11 @@
 #pragma once
 
-#include "entity.h"
+#include "../engine/entity.h"
 
 class Bird : public Entity
 {
 public:
+
     Bird();
 
     virtual void update(const TimeStamp& delta);
