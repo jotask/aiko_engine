@@ -11,6 +11,7 @@
 // aiko
 #include "time.h"
 #include "../constants.h"
+#include "utils.h"
 
 class Entity
 {
@@ -32,7 +33,7 @@ public:
 
     sf::Color         m_color;
     
-    std::unique_ptr<sf::Shape> m_shape;
+    std::shared_ptr<sf::Shape> m_shape;
     float             m_angle;
     float             m_speed;
 
@@ -42,6 +43,8 @@ public:
     // virtual void render(sf::RenderWindow&) final override;
 
 private:
+
+    static b2Body* getBody(sf::Vector2f pos, sf::Shape* shape);
 
     static const float          MAX_SPEED;
     static const sf::Vector2f   GRAVITY;

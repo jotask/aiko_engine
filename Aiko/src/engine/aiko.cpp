@@ -90,8 +90,9 @@ void Aiko::run()
         // update end
         renderWindow.clear();
         // renderstar
+        m_kimo->render(renderWindow);
+        // debug
         physics.render(renderWindow);
-        //m_kimo->render(renderWindow);
         // render end
         renderWindow.display();
     }

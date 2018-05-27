@@ -1,6 +1,5 @@
 ﻿  aiko.cpp
   entity.cpp
-  SFMLDebugDraw.cpp
   physics.cpp
   bird.cpp
   flappy_bird.cpp

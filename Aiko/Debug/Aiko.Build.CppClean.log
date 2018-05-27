@@ -6,6 +6,8 @@ c:\users\jose\code\aiko_engine\aiko\debug\pipe.obj
 c:\users\jose\code\aiko_engine\aiko\debug\flappy_bird.obj
 c:\users\jose\code\aiko_engine\aiko\debug\entity.obj
 c:\users\jose\code\aiko_engine\aiko\debug\bird.obj
+c:\users\jose\code\aiko_engine\aiko\debug\sfmldebugdraw.obj
+c:\users\jose\code\aiko_engine\aiko\debug\physics.obj
 c:\users\jose\code\aiko_engine\aiko\debug\constants.obj
 c:\users\jose\code\aiko_engine\aiko\debug\code.obj
 c:\users\jose\code\aiko_engine\aiko\debug\main.obj
@@ -14,10 +16,12 @@ c:\users\jose\code\aiko_engine\debug\aiko.pdb
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\cl.command.1.tlog
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\cl.read.1.tlog
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\cl.write.1.tlog
-c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link-cvtres.read.1.tlog
-c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link-cvtres.write.1.tlog
-c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link-rc.read.1.tlog
-c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link-rc.write.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028-cvtres.read.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028-cvtres.write.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028-rc.read.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028-rc.write.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028.read.1.tlog
+c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.11028.write.1.tlog
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.command.1.tlog
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.read.1.tlog
 c:\users\jose\code\aiko_engine\aiko\debug\aiko.tlog\link.write.1.tlog

@@ -163,7 +163,10 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\code_art_lines\code.cpp" />
     <ClCompile Include="src\constants.cpp" />
-    <ClCompile Include="src\engine\physics\Box2d_TEMP.cpp" />
+    <ClCompile Include="src\engine\perlinNoise\PerlinDemo_00.cpp" />
+    <ClCompile Include="src\engine\perlinNoise\PerlinDemo_01.cpp" />
+    <ClCompile Include="src\engine\perlinNoise\PerlinNoise.cpp" />
+    <ClCompile Include="src\engine\perlinNoise\ppm.cpp" />
     <ClCompile Include="src\engine\physics\physics.cpp" />
     <ClCompile Include="src\engine\physics\SFMLDebugDraw.cpp" />
     <ClCompile Include="src\flappy_bird\bird.cpp" />
@@ -178,7 +181,8 @@
     <ClInclude Include="src\code_art_lines\code.h" />
     <ClInclude Include="src\constants.h" />
     <ClInclude Include="src\engine\kimo.h" />
-    <ClInclude Include="src\engine\physics\Box2D_TEMP.hpp" />
+    <ClInclude Include="src\engine\perlinNoise\PerlinNoise.h" />
+    <ClInclude Include="src\engine\perlinNoise\ppm.h" />
     <ClInclude Include="src\engine\physics\physics.h" />
     <ClInclude Include="src\engine\physics\SFMLDebugDraw.h" />
     <ClInclude Include="src\engine\time.h" />
@@ -188,6 +192,9 @@
     <ClInclude Include="src\flappy_bird\pipe.h" />
     <ClInclude Include="src\labyrinth\labyrinth.h" />
     <ClInclude Include="src\engine\utils.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\engine\perlinNoise\README.md" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

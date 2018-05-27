@@ -4,6 +4,8 @@
 
 #include <stdio.h>
 
+#include "../perlinNoise/PerlinNoise.h"
+
 //Class copied from http://code.google.com/p/box2d/source/browse/trunk/Box2D/Testbed/Framework/Test.cpp
 //Copyright (c) 2011 Erin Catto http://box2d.org
 class QueryCallback : public b2QueryCallback
@@ -44,9 +46,10 @@ Physics::Physics()
     , m_window(nullptr)
     , m_debugDraw(nullptr)
     // Box2d
-    , m_gravity (0.0f, 9.8f)
+    , m_gravity(0.0f, 9.8f)
     , m_world(m_gravity)
     , m_mouseJoint(nullptr)
+    , m_delta(0.0f, 0.0f, 0.0f)
 {
 
 }
@@ -214,6 +217,105 @@ b2Body* Physics::createCircle(sf::Vector2f pos, float radius)
     return body;
 }
 
+b2Body* Physics::createRectangle(sf::Vector2f pos, sf::Vector2f size)
+{
+
+    auto& physics = Physics::get();
+
+    // Define the dynamic body. We set its position and call the body factory.
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    //bodyDef.type = b2_staticBody;
+    //bodyDef.position.Set(0.0f, 4.0f);
+    const auto tmp = sfVecToB2Vec(pos);
+    bodyDef.position.Set(tmp.x, tmp.y);
+    b2Body* body = physics.m_world.CreateBody(&bodyDef);
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox(size.x, size.y);
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 1.0f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
+
+    fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+
+                                   // Add the shape to the body.
+    body->CreateFixture(&fixtureDef);
+
+    physics.m_bodies.push_back(body);
+
+    return body;
+    return nullptr;
+};
+
+b2Body* Physics::createPolygon(sf::Vector2f pos, std::vector<sf::Vector2f> vertices)
+{
+
+    auto& physics = Physics::get();
+
+    // Define the dynamic body. We set its position and call the body factory.
+    b2BodyDef bodyDef;
+    bodyDef.type = b2_dynamicBody;
+    //bodyDef.type = b2_staticBody;
+    //bodyDef.position.Set(0.0f, 4.0f);
+    const auto tmp = sfVecToB2Vec(pos);
+    bodyDef.position.Set(tmp.x, tmp.y);
+    b2Body* body = physics.m_world.CreateBody(&bodyDef);
+
+    static const int32 count = vertices.size();
+
+    std::vector<b2Vec2> v;
+
+    if (vertices.size() > 0)
+    {
+        std::cout << "from shape" << std::endl;
+        for (const auto& vert : vertices)
+        {
+            v.push_back({vert.x, vert.y});
+        }
+    }
+    else
+    {
+        std::cout << "from triangle" << std::endl;
+        v.push_back({ 0.0f, 0.0f });
+        v.push_back({ 1.0f, 0.0f });
+        v.push_back({ 0.5f, 1.0f });
+    }
+
+    // Define another box shape for our dynamic body.
+    b2PolygonShape dynamicBox;
+    //dynamicBox.SetAsBox(1.0f, 1.0f);
+    dynamicBox.Set(v.data() , count);
+
+    // Define the dynamic body fixture.
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+
+    // Set the box density to be non-zero, so it will be dynamic.
+    fixtureDef.density = 1.0f;
+
+    // Override the default friction.
+    fixtureDef.friction = 0.3f;
+
+    fixtureDef.restitution = 0.6f; // Make it bounce a little bit
+
+                                    // Add the shape to the body.
+    body->CreateFixture(&fixtureDef);
+
+    physics.m_bodies.push_back(body);
+
+    return body;
+
+};
+
 Physics::~Physics()
 {
 
@@ -230,8 +332,21 @@ Physics::~Physics()
 
 void Physics::update(const TimeStamp& delta)
 {
+    m_delta += sf::Vector3f(delta.delta, delta.delta, delta.delta);
     m_world.Step(delta.delta, 6, 3);
-    //std::cout << "Physics::Update();" << std::endl;
+    // std::cout << "Physics::Update();" << std::endl;
+
+    unsigned int seed = 237;
+    PerlinNoise pn(seed);
+    //double noise = pn.noise(0.45, 0.8, 0.55);
+
+    auto tmp1 = 0.0f; // pn.noise(m_delta.x, m_delta.y, m_delta.z);
+    auto tmp2 = 0.0f; // pn.noise(m_delta.z, m_delta.y, m_delta.x);
+
+    b2Vec2 gravity(static_cast<float32>(tmp1), static_cast<float32>(tmp2));
+
+    m_gravity.x += gravity.x;
+
 }
 
 void Physics::render(sf::RenderWindow&)

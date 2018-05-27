@@ -18,7 +18,7 @@ void Bird::restart()
 void Bird::update(const TimeStamp& delta)
 {
     Entity::update(delta);
-    Entity::bounceScreen();
+    //Entity::bounceScreen();
 }
 
 void Bird::render(sf::RenderWindow& window)

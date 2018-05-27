@@ -8,6 +8,65 @@ constexpr float Entity::MAX_SPEED = 1000.0f;
 
 const sf::Vector2f GRAVITY = sf::Vector2f(0.0f, 0.0f);
 
+b2Body* Entity::getBody(sf::Vector2f pos, sf::Shape* shape)
+{
+
+    if (shape == nullptr)
+    {
+        assert(false);
+    }
+
+    if(shape != nullptr){
+        if (sf::ConvexShape* v = dynamic_cast<sf::ConvexShape*>(shape))
+        {
+            std::vector<sf::Vector2f> vert;
+            for (unsigned int i = 0; i < v->getPointCount(); ++i)
+            {
+                const auto tmp = v->getPoint(i);
+                vert.push_back(sf::Vector2f(tmp.x, tmp.y));
+            }
+            std::cout << "convex" << std::endl;
+            return Physics::createPolygon(pos, vert);
+        }
+        else if (sf::CircleShape* v = dynamic_cast<sf::CircleShape*>(shape))
+        {
+            std::cout << "circle" << std::endl;
+            const auto radius = Physics::B2Tosf(v->getRadius());
+            return Physics::createCircle(pos, radius);
+        }
+        else
+        {
+            std::cout << "oh noo" << std::endl;
+            std::vector<sf::Vector2f> vert;
+            vert.push_back(sf::Vector2f(0.0f, 1.0f));
+            vert.push_back(sf::Vector2f(-0.5f, 0.5f));
+            vert.push_back(sf::Vector2f(0.0f, 0.0f));
+            return Physics::createPolygon(pos, vert);
+        }
+    }
+
+    std::cout << "nullptr" << std::endl;
+
+    assert(false);
+
+    // get random
+    const float prob = 1.0f / static_cast<float>(3);
+    if (Utils::random1D() < prob)
+    {
+        return Physics::createRectangle(pos);
+    }
+    else if (Utils::random1D() < prob)
+    {
+        return Physics::createCircle(pos);
+    }
+    else
+    {
+        return Physics::createPolygon(pos);
+    }
+    assert(true);
+    return nullptr;
+}
+
 Entity::Entity(std::unique_ptr<sf::Shape>&& shape)
     : m_pos(Utils::randomPointInScreen())
     , m_vel(Utils::random2D())
@@ -17,14 +76,14 @@ Entity::Entity(std::unique_ptr<sf::Shape>&& shape)
     , m_angle(Utils::random1D() * 360.0f)
     , m_speed(Utils::random1D() * MAX_SPEED)
     , time(0.0f)
-    , m_body(Physics::createCircle( m_pos, 1.0f ) )
+    , m_body(Entity::getBody(m_pos, m_shape.get()))
     , m_applyGravity(true)
     , m_drawBounds(false)
     , m_drawShapes(true)
     , m_drawLines(true)
     , m_drawHeading(false)
 {
-
+    const auto* t = m_shape.get();
 }
 
 Entity::~Entity()
@@ -56,12 +115,26 @@ void Entity::update(const TimeStamp& delta)
     }
     else
     {
-        // acceleration = force(time, position) / mass;
-        // time += timestep;
-        // position += timestep * velocity;
-        // velocity += timestep * acceleration;
-        m_acc.x = 0;
-        m_acc.y = 0;
+        if (m_body != nullptr)
+        {
+            // auto& t = const_cast<b2Vec2&>(m_body->GetPosition());
+            auto& t = m_body->GetPosition();
+            // TODO USE Physhics
+            // auto tmp = Physics::B2VecTosfVec(t);
+            //auto tmp = sf::Vector2f(vector.x * sfdd::SCALE, vector.y * sfdd::SCALE);
+            sf::Vector2f tmp(t.x * sfdd::SCALE, t.y * sfdd::SCALE);
+            m_pos.x = tmp.x;
+            m_pos.y = tmp.y;
+        }
+        else
+        {
+            // acceleration = force(time, position) / mass;
+            // time += timestep;
+            // position += timestep * velocity;
+            // velocity += timestep * acceleration;
+            m_acc.x = 0;
+            m_acc.y = 0;
+        }
     }
 
 }
