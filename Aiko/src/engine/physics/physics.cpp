@@ -4,9 +4,11 @@
 
 #include <stdio.h>
 
-#include "../perlinNoise/PerlinNoise.h"
-
 #include "../utils.h"
+
+#include "components/wind.h"
+
+#define REGISTER_COMPONENT(classname) m_components.push_back(std::make_unique<classname>(classname()));
 
 //Class copied from http://code.google.com/p/box2d/source/browse/trunk/Box2D/Testbed/Framework/Test.cpp
 //Copyright (c) 2011 Erin Catto http://box2d.org
@@ -51,7 +53,6 @@ Physics::Physics()
     , m_gravity(0.0f, 9.8f)
     , m_world(m_gravity)
     , m_mouseJoint(nullptr)
-    , m_delta(0.0f, 0.0f, 0.0f)
 {
 
 }
@@ -67,7 +68,26 @@ void Physics::init(sf::RenderWindow& window)
     m_world.SetDebugDraw(m_debugDraw);
 
     boundWord(window);
+    
+    registerComponents();
 
+}
+
+void Physics::registerComponents()
+{
+    // m_components.push_back(std::make_unique<Wind>(Wind()));
+    REGISTER_COMPONENT(Wind)
+}
+
+
+b2Vec2& Physics::getGravity()
+{
+    return m_gravity;
+}
+
+b2World& Physics::getWorld()
+{
+    return m_world;
 }
 
 void Physics::input(sf::Event evnt)
@@ -334,33 +354,21 @@ Physics::~Physics()
 
 void Physics::update(const TimeStamp& delta)
 {
-    m_delta += sf::Vector3f(delta.delta, delta.delta, delta.delta);
     m_world.Step(delta.delta, 6, 3);
     // std::cout << "Physics::Update();" << std::endl;
-
-    unsigned int seed = 237;
-    PerlinNoise pn(seed);
-    //double noise = pn.noise(0.45, 0.8, 0.55);
-
-    auto tmp1 = Utils::map<double>(pn.noise(m_delta.x, m_delta.y, m_delta.z), 0.0, 1.0, -1.0, 1.0);
-    auto tmp2 = Utils::map<double>(pn.noise(m_delta.z, m_delta.y, m_delta.x), 0.0, 1.0, -1.0, 1.0);
-
-    b2Vec2 gravity(static_cast<float32>(tmp1), static_cast<float32>(tmp2));
-
-    static constexpr auto g = 9.98f;
-
-    m_gravity.x = gravity.x * g;
-    m_gravity.y = gravity.y * g;
-
-    //std::cout << "x:" << tmp1 << " y: " << tmp2 << " x:" << m_gravity.x << " y: " << m_gravity.y << std::endl;
-
-    m_world.SetGravity(m_gravity);
-
+    for (unsigned int i = 0; i < m_components.size(); ++i)
+    {
+        m_components.at(i).get()->update(delta);
+    }
 }
 
-void Physics::render(sf::RenderWindow&)
+void Physics::render(sf::RenderWindow& window)
 {
     m_world.DrawDebugData();
+    for (unsigned int i = 0; i < m_components.size(); ++i)
+    {
+        m_components.at(i).get()->render(window);
+    }
     //std::cout << "Physics::render();" << std::endl;
 }
 

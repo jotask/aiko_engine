@@ -24,7 +24,6 @@ void Bird::update(const TimeStamp& delta)
     {
         // left key is pressed: move our character
         m_body->ApplyForce(b2Vec2(0, -100), m_body->GetWorldCenter(), true);
-        // character.move(1, 0);
     }
 
     Entity::update(delta);

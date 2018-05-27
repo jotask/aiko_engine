@@ -10,6 +10,8 @@
 
 #include "../time.h"
 
+class PhysicsComponent;
+
 class Physics
 {
 public:
@@ -41,6 +43,9 @@ public:
 
     void input(sf::Event evnt);
 
+    b2Vec2&     getGravity();
+    b2World&    getWorld();
+
 private:
 
     Physics();
@@ -49,6 +54,8 @@ private:
     void operator=(Physics const&) = delete;
 
     void run();
+
+    void registerComponents();
 
     void boundWord(sf::RenderWindow&);
 
@@ -61,8 +68,6 @@ private:
 
     b2MouseJoint* m_mouseJoint;
 
-    sf::Vector3f m_delta;
-
     std::thread m_thread;
     std::atomic_bool m_run{ true };
 
@@ -70,5 +75,8 @@ private:
     b2Vec2  m_gravity;
     b2World m_world;
 
+    std::vector<std::unique_ptr<PhysicsComponent>> m_components;
+
+    friend class PhysicComponent;
 
 };

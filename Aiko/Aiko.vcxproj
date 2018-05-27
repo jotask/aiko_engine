@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\physics\components\physicscomponent.cpp" />
+    <ClCompile Include="src\engine\components\component.cpp" />
     <ClCompile Include="src\engine\aiko.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="src\code_art_lines\code.cpp" />
@@ -175,8 +177,11 @@
     <ClCompile Include="src\flappy_bird\pipe.cpp" />
     <ClCompile Include="src\labyrinth\labyrinth.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
+    <ClCompile Include="src\engine\physics\components\wind.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\physics\components\physicscomponent.h" />
+    <ClInclude Include="src\engine\components\component.h" />
     <ClInclude Include="src\engine\aiko.h" />
     <ClInclude Include="src\code_art_lines\code.h" />
     <ClInclude Include="src\constants.h" />
@@ -192,6 +197,7 @@
     <ClInclude Include="src\flappy_bird\pipe.h" />
     <ClInclude Include="src\labyrinth\labyrinth.h" />
     <ClInclude Include="src\engine\utils.h" />
+    <ClInclude Include="src\engine\physics\components\wind.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\engine\perlinNoise\README.md" />
