@@ -10,6 +10,12 @@ public:
     static float random1D();
     static float random1D(float min, float max);
 
+    template<class T>
+    static T map(T value, T iStart, T iStop, T oStart, T oStop)
+    {
+        return oStart + (oStop - oStart) * ((value - iStart) / (iStop - iStart));
+    }
+
     static sf::Vector2f randomPointInScreen();
     static sf::Vector2f random2D();
     static sf::Color randomColor(bool alpha = false);

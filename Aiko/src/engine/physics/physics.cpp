@@ -6,6 +6,8 @@
 
 #include "../perlinNoise/PerlinNoise.h"
 
+#include "../utils.h"
+
 //Class copied from http://code.google.com/p/box2d/source/browse/trunk/Box2D/Testbed/Framework/Test.cpp
 //Copyright (c) 2011 Erin Catto http://box2d.org
 class QueryCallback : public b2QueryCallback
@@ -340,12 +342,19 @@ void Physics::update(const TimeStamp& delta)
     PerlinNoise pn(seed);
     //double noise = pn.noise(0.45, 0.8, 0.55);
 
-    auto tmp1 = 0.0f; // pn.noise(m_delta.x, m_delta.y, m_delta.z);
-    auto tmp2 = 0.0f; // pn.noise(m_delta.z, m_delta.y, m_delta.x);
+    auto tmp1 = Utils::map<double>(pn.noise(m_delta.x, m_delta.y, m_delta.z), 0.0, 1.0, -1.0, 1.0);
+    auto tmp2 = Utils::map<double>(pn.noise(m_delta.z, m_delta.y, m_delta.x), 0.0, 1.0, -1.0, 1.0);
 
     b2Vec2 gravity(static_cast<float32>(tmp1), static_cast<float32>(tmp2));
 
-    m_gravity.x += gravity.x;
+    static constexpr auto g = 9.98f;
+
+    m_gravity.x = gravity.x * g;
+    m_gravity.y = gravity.y * g;
+
+    //std::cout << "x:" << tmp1 << " y: " << tmp2 << " x:" << m_gravity.x << " y: " << m_gravity.y << std::endl;
+
+    m_world.SetGravity(m_gravity);
 
 }
 

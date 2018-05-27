@@ -169,6 +169,12 @@ void Entity::render(sf::RenderWindow& window)
 
     const auto bounds = m_shape->getLocalBounds();
 
+    // center shape
+    m_pos.x -= bounds.width * 0.5f;
+    m_pos.y -= bounds.height * 0.5f;
+
+    m_angle = m_body->GetAngle();
+
     if (m_drawBounds)
     {
         // drawbounds

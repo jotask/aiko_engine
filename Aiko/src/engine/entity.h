@@ -46,6 +46,8 @@ private:
 
     static b2Body* getBody(sf::Vector2f pos, sf::Shape* shape);
 
+protected:
+
     static const float          MAX_SPEED;
     static const sf::Vector2f   GRAVITY;
 
