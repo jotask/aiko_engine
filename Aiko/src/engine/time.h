@@ -1,8 +1,29 @@
 #pragma once
 
+#include <SFML/System/Clock.hpp>
+
 class Timer
 {
 public:
+    Timer()
+        : clock()
+    {
+
+    }
+
+    auto getTimeSinceStart()
+    {
+        return clock.getElapsedTime();
+    }
+
+    auto restart()
+    {
+        clock.restart();
+    }
+
+private:
+
+    sf::Clock clock;
 
 };
 

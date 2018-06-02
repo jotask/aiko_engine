@@ -77,7 +77,7 @@ Entity::Entity(std::unique_ptr<sf::Shape>&& shape)
     , m_drawLines(true)
     , m_drawHeading(false)
 {
-    const auto* t = m_shape.get();
+    // const auto* t = m_shape.get();
 }
 
 Entity::~Entity()
@@ -196,9 +196,9 @@ void Entity::render(sf::RenderWindow& window)
         float x = center.x;
         float y = center.y;
 
-        const auto delta = 
+        const auto delta = m_clock.getElapsedTime().asSeconds();
 
-        x += cos(m);
+        x += cos(delta);
         y += 0.0f;
 
         // x += radius * sin(m_angle);

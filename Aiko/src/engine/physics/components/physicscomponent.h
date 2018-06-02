@@ -7,17 +7,19 @@
 class PhysicsComponent : public Component
 {
 public:
-    PhysicsComponent();
+    PhysicsComponent(const bool _drawDebug = true);
     ~PhysicsComponent();
 
-    // virtual void update(const TimeStamp& delta);
-    // virtual void render(sf::RenderWindow&);
+    // virtual void update(const TimeStamp& delta) override;
+    // virtual void render(sf::RenderWindow&) override;
 
 protected:
     
     friend class Physic;
 
     Physics&       m_physics;
+
+    bool           m_drawDebug;
 
 };
 

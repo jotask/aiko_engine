@@ -53,6 +53,8 @@ protected:
 
     b2Body* m_body;
 
+    sf::Clock m_clock;
+
     // physics
     bool m_applyGravity;
 

@@ -19,7 +19,7 @@ Aiko::Aiko()
     : m_kimo(nullptr)
     , m_state(START_STATE)
 {
-    DBOUT("The value of x is " << 10);
+
 }
 
 Aiko::~Aiko()
