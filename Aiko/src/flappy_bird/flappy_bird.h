@@ -5,6 +5,7 @@
 
 #include "../engine/kimo.h"
 #include "../engine/entity.h"
+#include "../engine/camera.h"
 
 class FlappyBird : public Kimo
 {
@@ -18,5 +19,7 @@ public:
 private:
 
     std::vector<std::unique_ptr<Entity>> m_entities;
+
+    Camera m_camera;
 
 };

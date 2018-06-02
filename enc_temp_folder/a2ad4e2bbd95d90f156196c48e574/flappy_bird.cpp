@@ -29,7 +29,14 @@ void FlappyBird::update(const TimeStamp& delta)
     {
         Entity* entity = m_entities[i].get();
 
+
+        const auto isOnCamera = m_camera.inOnCamera(*entity);
+
+        const auto tmp = (isOnCamera == true) ? "true" : "false";
+        std::cout << tmp << std::endl;
+
         entity->update(delta);
+
 
         for (unsigned int j = 0; j < m_entities.size(); ++j)
         {
