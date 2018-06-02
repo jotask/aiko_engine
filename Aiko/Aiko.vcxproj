@@ -159,6 +159,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\engine\algorithms\entity.cpp" />
+    <ClCompile Include="src\engine\camera.cpp" />
     <ClCompile Include="src\engine\physics\components\physicscomponent.cpp" />
     <ClCompile Include="src\engine\components\component.cpp" />
     <ClCompile Include="src\engine\aiko.cpp" />
@@ -180,6 +182,7 @@
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\engine\camera.h" />
     <ClInclude Include="src\engine\physics\components\physicscomponent.h" />
     <ClInclude Include="src\engine\components\component.h" />
     <ClInclude Include="src\engine\aiko.h" />

@@ -11,6 +11,9 @@ int random(int low, int high);
 #include <iostream>
 #include <sstream>
 
+// include for everyone
+//#include "engine/aiko.h"
+
 #define DBOUT( s )            \
 {                             \
    std::wostringstream os_;    \

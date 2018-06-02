@@ -10,12 +10,6 @@ const sf::Vector2f GRAVITY = sf::Vector2f(0.0f, 0.0f);
 
 b2Body* Entity::getBody(sf::Vector2f pos, sf::Shape* shape)
 {
-
-    if (shape == nullptr)
-    {
-        assert(false);
-    }
-
     if(shape != nullptr){
         if (sf::ConvexShape* v = dynamic_cast<sf::ConvexShape*>(shape))
         {
@@ -173,7 +167,7 @@ void Entity::render(sf::RenderWindow& window)
     m_pos.x -= bounds.width * 0.5f;
     m_pos.y -= bounds.height * 0.5f;
 
-    m_angle = m_body->GetAngle();
+    m_angle = -(m_body->GetAngle()*(180 / b2_pi));
 
     if (m_drawBounds)
     {
@@ -202,8 +196,13 @@ void Entity::render(sf::RenderWindow& window)
         float x = center.x;
         float y = center.y;
 
-        x += radius * sin(m_angle);
-        y += radius * cos(m_angle);
+        const auto delta = 
+
+        x += cos(m);
+        y += 0.0f;
+
+        // x += radius * sin(m_angle);
+        // y += radius * cos(m_angle);
 
         // TODO make const
         sf::Vector2f target(x, y);
