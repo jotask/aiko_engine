@@ -21,15 +21,6 @@ namespace aiko
         {
         public:
 
-            static float sfToB2(float32 n) { return n * sfdd::SCALE; }
-            static float B2Tosf(float32 n) { return n / sfdd::SCALE; }
-
-            template<typename T >
-            static b2Vec2 sfVecToB2Vec(sf::Vector2<T> vector) { return b2Vec2(vector.x / sfdd::SCALE, vector.y / sfdd::SCALE); }
-
-            template<typename T >
-            static sf::Vector2<T> B2VecTosfVec(b2Vec2 vector) { return sf::Vector2<T>(vector.x * sfdd::SCALE, vector.y * sfdd::SCALE); }
-
             static Physics& get()
             {
                 static Physics instance; // Guaranteed to be destroyed. Instantiated on first use.
@@ -38,10 +29,6 @@ namespace aiko
 
             void update(const TimeStamp& delta);
             void render(sf::RenderWindow&);
-
-            static b2Body* createCircle(sf::Vector2f pos, float radius = 1.0f);
-            static b2Body* createRectangle(sf::Vector2f pos, sf::Vector2f size = sf::Vector2f(1.0f, 1.0f));
-            static b2Body* createPolygon(sf::Vector2f poss, std::vector<sf::Vector2f> vertices = { {0.0f, 1.0f}, {-0.5f, 0.0f},{0.0f, 0.0f} });
 
             void init(sf::RenderWindow& window);
 
@@ -82,6 +69,7 @@ namespace aiko
             std::vector<std::unique_ptr<PhysicsComponent>> m_components;
 
             friend class PhysicComponent;
+            friend class PhysicsUtils;
 
         };
 

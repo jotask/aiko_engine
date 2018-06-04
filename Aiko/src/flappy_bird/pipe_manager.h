@@ -19,6 +19,9 @@ namespace flappybird
 
         std::vector<Pipe> m_pipes;
 
+        const float m_pipeSpace;
+        const unsigned int m_index;
+
     };
 
 }

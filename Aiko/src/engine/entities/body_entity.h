@@ -7,6 +7,7 @@
 #include <SFML/Graphics.hpp>
 
 #include "../physics/physics.h"
+#include "../physics/physics_utils.h"
 
 // aiko
 #include "entity.h"

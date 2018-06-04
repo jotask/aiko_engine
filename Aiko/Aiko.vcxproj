@@ -178,6 +178,7 @@
     <ClCompile Include="src\engine\physics\environment\environment.cpp" />
     <ClCompile Include="src\engine\physics\environment\environment3D.cpp" />
     <ClCompile Include="src\engine\physics\physics.cpp" />
+    <ClCompile Include="src\engine\physics\physics_utils.cpp" />
     <ClCompile Include="src\engine\physics\SFMLDebugDraw.cpp" />
     <ClCompile Include="src\flappy_bird\bird.cpp" />
     <ClCompile Include="src\engine\entities\body_entity.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="src\engine\time.h" />
     <ClInclude Include="src\flappy_bird\bird.h" />
     <ClInclude Include="src\engine\entities\body_entity.h" />
+    <ClInclude Include="src\flappy_bird\contact_listener.h" />
     <ClInclude Include="src\flappy_bird\flappy_bird.h" />
     <ClInclude Include="src\flappy_bird\pipe.h" />
     <ClInclude Include="src\flappy_bird\pipe_manager.h" />

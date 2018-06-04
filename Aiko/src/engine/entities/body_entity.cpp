@@ -21,13 +21,13 @@ namespace aiko
                     vert.push_back(sf::Vector2f(tmp.x, tmp.y));
                 }
                 std::cout << "convex" << std::endl;
-                return aiko::physics::Physics::createPolygon(pos, vert);
+                return aiko::physics::PhysicsUtils::createPolygon(pos, vert);
             }
             else if (sf::CircleShape* v = dynamic_cast<sf::CircleShape*>(shape))
             {
                 std::cout << "circle" << std::endl;
-                const auto radius = aiko::physics::Physics::B2Tosf(v->getRadius());
-                return aiko::physics::Physics::createCircle(pos, radius);
+                const auto radius = aiko::physics::PhysicsUtils::B2Tosf(v->getRadius());
+                return aiko::physics::PhysicsUtils::createCircle(pos, radius);
             }
             else
             {
@@ -36,7 +36,7 @@ namespace aiko
                 vert.push_back(sf::Vector2f(0.0f, 1.0f));
                 vert.push_back(sf::Vector2f(-0.5f, 0.5f));
                 vert.push_back(sf::Vector2f(0.0f, 0.0f));
-                return aiko::physics::Physics::createPolygon(pos, vert);
+                return aiko::physics::PhysicsUtils::createPolygon(pos, vert);
             }
         }
 
@@ -48,15 +48,15 @@ namespace aiko
         const float prob = 1.0f / static_cast<float>(3);
         if (Utils::random1D() < prob)
         {
-            return aiko::physics::Physics::createRectangle(pos);
+            return aiko::physics::PhysicsUtils::createRectangle(pos);
         }
         else if (Utils::random1D() < prob)
         {
-            return aiko::physics::Physics::createCircle(pos);
+            return aiko::physics::PhysicsUtils::createCircle(pos);
         }
         else
         {
-            return aiko::physics::Physics::createPolygon(pos);
+            return aiko::physics::PhysicsUtils::createPolygon(pos);
         }
         assert(true);
         return nullptr;
@@ -79,6 +79,7 @@ namespace aiko
         , m_drawHeading(false)
     {
         // const auto* t = m_shape.get();
+        m_body->SetUserData(this);
     }
 
     BodyEntity::~BodyEntity()
@@ -114,7 +115,7 @@ namespace aiko
             {
                 // auto& t = const_cast<b2Vec2&>(m_body->GetPosition());
                 auto t = m_body->GetPosition();
-                auto tmp = aiko::physics::Physics::B2VecTosfVec<float>(t);
+                auto tmp = aiko::physics::PhysicsUtils::B2VecTosfVec<float>(t);
                 // TODO USE Physhics
                 // auto tmp = Physics::B2VecTosfVec(t);
                 //auto tmp = sf::Vector2f(vector.x * sfdd::SCALE, vector.y * sfdd::SCALE);
