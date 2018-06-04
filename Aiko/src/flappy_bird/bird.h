@@ -2,15 +2,20 @@
 
 #include "../engine/entity.h"
 
-class Bird : public Entity
+namespace flappybird
 {
-public:
 
-    Bird();
+    class Bird : public aiko::Entity
+    {
+    public:
 
-    virtual void update(const TimeStamp& delta);
-    virtual void render(sf::RenderWindow& window);
+        Bird();
 
-    void restart();
+        virtual void update(const aiko::TimeStamp& delta);
+        virtual void render(sf::RenderWindow& window);
 
-};
+        void restart();
+
+    };
+
+}

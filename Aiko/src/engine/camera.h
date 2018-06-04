@@ -5,28 +5,33 @@
 
 #include "entity.h"
 
-class Camera
+namespace aiko
 {
-public:
-    Camera();
-    ~Camera();
 
-    void update(const TimeStamp& delta);
-    void render(sf::RenderWindow&);
+    class Camera
+    {
+    public:
+        Camera();
+        ~Camera();
 
-    bool inOnCamera(const Entity& entity) const;
+        void update(const TimeStamp& delta);
+        void render(sf::RenderWindow&);
 
-private:
+        bool inOnCamera(const Entity& entity) const;
+
+    private:
 
 
-    static sf::FloatRect getViewBounds(const sf::View &view);
+        static sf::FloatRect getViewBounds(const sf::View &view);
 
-    sf::Vector2f    m_pos;
-    float           m_rotation;
-    float           m_zoom;
+        sf::Vector2f    m_pos;
+        float           m_rotation;
+        float           m_zoom;
 
-    sf::Vector2f    m_bound;
+        sf::Vector2f    m_bound;
 
-    sf::View        m_view;
+        sf::View        m_view;
 
-};
+    };
+
+}

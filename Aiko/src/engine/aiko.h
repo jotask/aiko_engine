@@ -5,31 +5,36 @@
 // STL
 #include <memory>
 
-class Kimo;
-
-class Aiko
+namespace aiko
 {
-public:
-    Aiko();
-    ~Aiko();
 
-    void                    run();
+    class Kimo;
 
-    static std::shared_ptr<Aiko> get() {
-        if (m_singleton != nullptr)
-        {
-            m_singleton.reset(new Aiko);
+    class Aiko
+    {
+    public:
+        Aiko();
+        ~Aiko();
+
+        void                    run();
+
+        static std::shared_ptr<Aiko> get() {
+            if (m_singleton != nullptr)
+            {
+                m_singleton.reset(new Aiko);
+            }
+            return m_singleton;
         }
-        return m_singleton;
-    }
 
-private:
+    private:
 
-    void                         init();
+        void                         init();
 
-    static std::shared_ptr<Aiko> m_singleton;
+        static std::shared_ptr<Aiko> m_singleton;
 
-    std::unique_ptr<Kimo>   m_kimo;
-    STATE                   m_state;
+        std::unique_ptr<Kimo>   m_kimo;
+        STATE                   m_state;
 
-};
+    };
+
+}

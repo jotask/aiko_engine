@@ -4,34 +4,38 @@
 
 #include "../engine/kimo.h"
 
-class Cell
-{
-public:
-
-    Cell() { }
-    Cell(float x, float y);
-    void update(const TimeStamp& delta);
-    void render(sf::RenderWindow&);
-
-    sf::RectangleShape rect;
-
-    sf::Vertex line[2];
-
-    bool side;
-
-
-};
-
-class Lab : public Kimo
+namespace labyrinth
 {
 
-public:
+    class Cell
+    {
+    public:
 
-    Lab();
+        Cell() { }
+        Cell(float x, float y);
+        void update(const aiko::TimeStamp& delta);
+        void render(sf::RenderWindow&);
 
-    virtual void update(const TimeStamp& delta) final override;
-    virtual void render(sf::RenderWindow&) final override;
+        sf::RectangleShape rect;
 
-    std::vector< std::vector<Cell> > cells;
+        sf::Vertex line[2];
 
-};
+        bool side;
+
+    };
+
+    class Lab : public aiko::Kimo
+    {
+
+    public:
+
+        Lab();
+
+        virtual void update(const aiko::TimeStamp& delta) final override;
+        virtual void render(sf::RenderWindow&) final override;
+
+        std::vector< std::vector<Cell> > cells;
+
+    };
+
+}

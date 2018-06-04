@@ -15,86 +15,91 @@
 #include "physics/physics.h"
 #include "time.h"
 
-Aiko::Aiko()
-    : m_kimo(nullptr)
-    , m_state(START_STATE)
+namespace aiko
 {
 
-}
-
-Aiko::~Aiko()
-{
-
-}
-
-void Aiko::init()
-{
-
-    Physics::get();
-
-    switch (m_state)
+    Aiko::Aiko()
+        : m_kimo(nullptr)
+        , m_state(START_STATE)
     {
-    case STATE::LABYRINTH:
-        m_kimo.reset(new Lab());
-        break;
-    case STATE::CODE:
-        m_kimo.reset(new Code());
-        break;
-    case STATE::FLAPPYBIRD:
-        m_kimo.reset(new FlappyBird());
-        break;
-    default:
-        assert(false);
+
     }
 
-}
+    Aiko::~Aiko()
+    {
 
-void Aiko::run()
-{
+    }
 
-    sf::RenderWindow renderWindow;
-    sf::Event event;
-    sf::Clock clock;
+    void Aiko::init()
+    {
 
-    float delta = 0.0f;
+        aiko::physics::Physics::get();
 
-    renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), "SFML Demo");
-
-    init();
-
-    auto& physics = Physics::get();
-    physics.init(renderWindow);
-
-    TimeStamp timeStamp;
-
-    while (renderWindow.isOpen()) {
-        // Check for all the events that occured since the last frame.
-        while (renderWindow.pollEvent(event)) {
-            //Handle events here
-            if (event.type == sf::Event::EventType::Closed)
-            {
-                renderWindow.close();
-            }
-            physics.input(event);
+        switch (m_state)
+        {
+        case STATE::LABYRINTH:
+            m_kimo.reset(new labyrinth::Lab());
+            break;
+        case STATE::CODE:
+            m_kimo.reset(new code::Code());
+            break;
+        case STATE::FLAPPYBIRD:
+            m_kimo.reset(new flappybird::FlappyBird());
+            break;
+        default:
+            assert(false);
         }
 
-        // A microsecond is 1/1,000,000th of a second, 1000 microseconds == 1 millisecond
-        timeStamp.delta = clock.getElapsedTime().asSeconds();
-        //std::cout << "Elapsed time since previous frame(microseconds): " << delta << std::endl;
+    }
 
-        // Start the countdown over.  Think of laps on a stop watch.
-        clock.restart();
-        // update start
-        physics.update(timeStamp);
-        m_kimo->update(timeStamp);
-        // update end
-        renderWindow.clear();
-        // renderstar
-        m_kimo->render(renderWindow);
-        // debug
-        physics.render(renderWindow);
-        // render end
-        renderWindow.display();
+    void Aiko::run()
+    {
+
+        sf::RenderWindow renderWindow;
+        sf::Event event;
+        sf::Clock clock;
+
+        float delta = 0.0f;
+
+        renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), "SFML Demo");
+
+        init();
+
+        auto& physics = aiko::physics::Physics::get();
+        physics.init(renderWindow);
+
+        TimeStamp timeStamp;
+
+        while (renderWindow.isOpen()) {
+            // Check for all the events that occured since the last frame.
+            while (renderWindow.pollEvent(event)) {
+                //Handle events here
+                if (event.type == sf::Event::EventType::Closed)
+                {
+                    renderWindow.close();
+                }
+                physics.input(event);
+            }
+
+            // A microsecond is 1/1,000,000th of a second, 1000 microseconds == 1 millisecond
+            timeStamp.delta = clock.getElapsedTime().asSeconds();
+            //std::cout << "Elapsed time since previous frame(microseconds): " << delta << std::endl;
+
+            // Start the countdown over.  Think of laps on a stop watch.
+            clock.restart();
+            // update start
+            physics.update(timeStamp);
+            m_kimo->update(timeStamp);
+            // update end
+            renderWindow.clear();
+            // renderstar
+            m_kimo->render(renderWindow);
+            // debug
+            physics.render(renderWindow);
+            // render end
+            renderWindow.display();
+        }
+
     }
 
 }

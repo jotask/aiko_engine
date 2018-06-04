@@ -3,21 +3,28 @@
 #include "physicscomponent.h"
 #include "../perlinNoise/PerlinNoise.h"
 
-class Wind : public PhysicsComponent
+namespace aiko
 {
-public:
-    Wind();
-    ~Wind();
+    namespace physics
+    {
 
-    void update(const TimeStamp& delta) final override;
-    void render(sf::RenderWindow&)      final override;
+        class Wind : public PhysicsComponent
+        {
+        public:
+            Wind();
+            ~Wind();
 
-private:
+            void update(const TimeStamp& delta) final override;
+            void render(sf::RenderWindow&)      final override;
 
-    static constexpr unsigned int seed = 237;
+        private:
 
-    PerlinNoise pn;
+            static constexpr unsigned int seed = 237;
 
-    sf::Vector3f m_delta;
-};
+            PerlinNoise pn;
 
+            sf::Vector3f m_delta;
+        };
+
+    }
+}

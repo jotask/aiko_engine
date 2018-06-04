@@ -12,7 +12,7 @@ public:
     Component();
     virtual ~Component();
 
-    virtual void update(const TimeStamp& delta) = 0;
+    virtual void update(const aiko::TimeStamp& delta) = 0;
     virtual void render(sf::RenderWindow&) = 0;
     
 

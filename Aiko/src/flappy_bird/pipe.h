@@ -2,12 +2,17 @@
 
 #include "../engine/entity.h"
 
-class Pipe : public Entity
+namespace flappybird
 {
-public:
-    Pipe();
 
-    virtual void update(const TimeStamp& delta);
-    virtual void render(sf::RenderWindow& window);
+    class Pipe : public aiko::Entity
+    {
+    public:
+        Pipe();
 
-};
+        virtual void update(const aiko::TimeStamp& delta);
+        virtual void render(sf::RenderWindow& window);
+
+    };
+
+}

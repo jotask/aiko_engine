@@ -7,11 +7,14 @@
 #include "time.h"
 #include "../constants.h"
 
-class Kimo
+namespace aiko
 {
-public:
+    class Kimo
+    {
+    public:
 
-    virtual void update(const TimeStamp& delta) = 0;
-    virtual void render(sf::RenderWindow&)      = 0;
+        virtual void update(const aiko::TimeStamp& delta) = 0;
+        virtual void render(sf::RenderWindow&) = 0;
+    };
 
-};
+}

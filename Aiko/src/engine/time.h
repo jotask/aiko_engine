@@ -2,41 +2,46 @@
 
 #include <SFML/System/Clock.hpp>
 
-class Timer
+namespace aiko
 {
-public:
-    Timer()
-        : clock()
+
+    class Timer
     {
+    public:
+        Timer()
+            : clock()
+        {
 
-    }
+        }
 
-    auto getTimeSinceStart()
-    {
-        return clock.getElapsedTime();
-    }
+        auto getTimeSinceStart()
+        {
+            return clock.getElapsedTime();
+        }
 
-    auto restart()
-    {
-        clock.restart();
-    }
+        auto restart()
+        {
+            clock.restart();
+        }
 
-private:
+    private:
 
-    sf::Clock clock;
-
-};
-
-// TODO Rename the following class
-class TimeStamp
-{
-public:
-
-    TimeStamp()
-        : delta (0.0f)
-    {
+        sf::Clock clock;
 
     };
 
-    float delta;
-};
+    // TODO Rename the following class
+    class TimeStamp
+    {
+    public:
+
+        TimeStamp()
+            : delta(0.0f)
+        {
+
+        };
+
+        float delta;
+    };
+
+}

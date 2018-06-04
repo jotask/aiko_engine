@@ -13,55 +13,59 @@
 #include "../constants.h"
 #include "utils.h"
 
-class Entity
+namespace aiko
 {
-public:
 
-    Entity(std::unique_ptr<sf::Shape>&&);
-    ~Entity();
+    class Entity
+    {
+    public:
 
-    virtual void update(const TimeStamp& delta);
-    virtual void render(sf::RenderWindow& window);
+        Entity(std::unique_ptr<sf::Shape>&&);
+        ~Entity();
 
-    bool isColliding(Entity& other) const;
+        virtual void update(const TimeStamp& delta);
+        virtual void render(sf::RenderWindow& window);
 
-    void bounceScreen();
+        bool isColliding(Entity& other) const;
 
-    sf::Vector2f      m_pos;
-    sf::Vector2f      m_vel;
-    sf::Vector2f      m_acc;
+        void bounceScreen();
 
-    sf::Color         m_color;
-    
-    std::shared_ptr<sf::Shape> m_shape;
-    float             m_angle;
-    float             m_speed;
+        sf::Vector2f      m_pos;
+        sf::Vector2f      m_vel;
+        sf::Vector2f      m_acc;
 
-    float time;
+        sf::Color         m_color;
 
-    // virtual void update(const TimeStamp& delta) final override;
-    // virtual void render(sf::RenderWindow&) final override;
+        std::shared_ptr<sf::Shape> m_shape;
+        float             m_angle;
+        float             m_speed;
 
-private:
+        float time;
 
-    static b2Body* getBody(sf::Vector2f pos, sf::Shape* shape);
+        // virtual void update(const TimeStamp& delta) final override;
+        // virtual void render(sf::RenderWindow&) final override;
 
-protected:
+    private:
 
-    static const float          MAX_SPEED;
-    static const sf::Vector2f   GRAVITY;
+        static b2Body* getBody(sf::Vector2f pos, sf::Shape* shape);
 
-    b2Body* m_body;
+    protected:
 
-    sf::Clock m_clock;
+        static const float          MAX_SPEED;
+        static const sf::Vector2f   GRAVITY;
 
-    // physics
-    bool m_applyGravity;
+        b2Body* m_body;
 
-    // rendering
-    bool m_drawBounds;
-    bool m_drawShapes;
-    bool m_drawLines;
-    bool m_drawHeading;
+        sf::Clock m_clock;
 
-};
+        // physics
+        bool m_applyGravity;
+
+        // rendering
+        bool m_drawBounds;
+        bool m_drawShapes;
+        bool m_drawLines;
+        bool m_drawHeading;
+
+    };
+}

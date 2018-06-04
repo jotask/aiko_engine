@@ -7,19 +7,24 @@
 #include "../engine/entity.h"
 #include "../engine/camera.h"
 
-class FlappyBird : public Kimo
+namespace flappybird
 {
-public:
 
-    FlappyBird();
+    class FlappyBird : public aiko::Kimo
+    {
+    public:
 
-    virtual void update(const TimeStamp& delta) final override;
-    virtual void render(sf::RenderWindow&) final override;
+        FlappyBird();
 
-private:
+        virtual void update(const aiko::TimeStamp& delta) final override;
+        virtual void render(sf::RenderWindow&) final override;
 
-    std::vector<std::unique_ptr<Entity>> m_entities;
+    private:
 
-    Camera m_camera;
+        std::vector<std::unique_ptr<aiko::Entity>> m_entities;
 
-};
+        aiko::Camera m_camera;
+
+    };
+
+}

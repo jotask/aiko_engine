@@ -4,22 +4,29 @@
 
 #include "../physics.h"
 
-class PhysicsComponent : public Component
+namespace aiko
 {
-public:
-    PhysicsComponent(const bool _drawDebug = true);
-    ~PhysicsComponent();
+    namespace physics
+    {
 
-    // virtual void update(const TimeStamp& delta) override;
-    // virtual void render(sf::RenderWindow&) override;
+        class PhysicsComponent : public Component
+        {
+        public:
+            PhysicsComponent(const bool _drawDebug = true);
+            ~PhysicsComponent();
 
-protected:
-    
-    friend class Physic;
+            // virtual void update(const TimeStamp& delta) override;
+            // virtual void render(sf::RenderWindow&) override;
 
-    Physics&       m_physics;
+        protected:
 
-    bool           m_drawDebug;
+            friend class Physic;
 
-};
+            aiko::physics::Physics&       m_physics;
 
+            bool           m_drawDebug;
+
+        };
+
+    }
+}

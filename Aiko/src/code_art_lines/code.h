@@ -14,31 +14,36 @@ namespace sf
     class RenderWindow;
 }
 
-class Code : public Kimo
+namespace code
 {
-public:
 
-    Code();
-    ~Code();
+    class Code : public aiko::Kimo
+    {
+    public:
 
-    virtual void update(const TimeStamp& delta) final override;
-    virtual void render(sf::RenderWindow&) final override;
+        Code();
+        ~Code();
 
-private:
+        virtual void update(const aiko::TimeStamp& delta) final override;
+        virtual void render(sf::RenderWindow&) final override;
 
-    void randomPos(const bool x = false, const bool y = false);
-    void randomVel(const bool x = false, const bool y = false);
-    void randomCol();
+    private:
 
-    void randomEverything();
+        void randomPos(const bool x = false, const bool y = false);
+        void randomVel(const bool x = false, const bool y = false);
+        void randomCol();
 
-    static const sf::Color bg;
+        void randomEverything();
 
-    sf::Image img;
+        static const sf::Color bg;
 
-    sf::Vector2i vel;
-    sf::Vector2i pos;
+        sf::Image img;
 
-    sf::Color c;
+        sf::Vector2i vel;
+        sf::Vector2i pos;
 
-};
+        sf::Color c;
+
+    };
+
+}
