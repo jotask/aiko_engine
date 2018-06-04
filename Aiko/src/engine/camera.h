@@ -3,12 +3,12 @@
 #include "time.h"
 #include <SFML/Graphics.hpp>
 
-#include "entity.h"
+#include "entities/body_entity.h"
 
 namespace aiko
 {
 
-    class Camera
+    class Camera : public Entity
     {
     public:
         Camera();
@@ -17,10 +17,9 @@ namespace aiko
         void update(const TimeStamp& delta);
         void render(sf::RenderWindow&);
 
-        bool inOnCamera(const Entity& entity) const;
+        bool isOnCamera(const BodyEntity& entity) const;
 
     private:
-
 
         static sf::FloatRect getViewBounds(const sf::View &view);
 

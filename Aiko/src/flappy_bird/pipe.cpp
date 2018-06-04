@@ -4,7 +4,7 @@ namespace flappybird
 {
 
     Pipe::Pipe()
-        : Entity(std::make_unique<sf::RectangleShape>(sf::Vector2f(10.0f, 10.0f)))
+        : BodyEntity(std::make_unique<sf::RectangleShape>(sf::Vector2f(10.0f, 10.0f)))
     {
 
     }

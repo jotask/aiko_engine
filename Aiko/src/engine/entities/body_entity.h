@@ -6,27 +6,25 @@
 // sfml
 #include <SFML/Graphics.hpp>
 
-#include "physics/physics.h"
+#include "../physics/physics.h"
 
 // aiko
-#include "time.h"
-#include "../constants.h"
-#include "utils.h"
+#include "entity.h"
 
 namespace aiko
 {
 
-    class Entity
+    class BodyEntity : public Entity
     {
     public:
 
-        Entity(std::unique_ptr<sf::Shape>&&);
-        ~Entity();
+        BodyEntity(std::unique_ptr<sf::Shape>&&);
+        ~BodyEntity();
 
         virtual void update(const TimeStamp& delta);
         virtual void render(sf::RenderWindow& window);
 
-        bool isColliding(Entity& other) const;
+        bool isColliding(BodyEntity& other) const;
 
         void bounceScreen();
 

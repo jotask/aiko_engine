@@ -1,7 +1,7 @@
 #include "flappy_bird.h"
 
 #include "bird.h"
-#include "pipe.h"
+#include "pipe_manager.h"
 
 #include "../engine/utils.h"
 
@@ -9,6 +9,7 @@ namespace flappybird
 {
 
     FlappyBird::FlappyBird()
+        : m_pipeManager     (nullptr)
     {
 
         // add the bird
@@ -19,33 +20,27 @@ namespace flappybird
 
         for (unsigned int i = 0; i < MANY; ++i)
         {
-            //auto pipe = std::make_unique<Pipe>();
-            //m_entities.push_back(std::move(pipe));
             m_entities.push_back(std::make_unique<Bird>());
         }
+
+        m_pipeManager = std::make_unique<PipeManager>();
 
     }
 
     void FlappyBird::update(const aiko::TimeStamp& delta)
     {
+        // update all birds
         for (unsigned int i = 0; i < m_entities.size(); ++i)
         {
-            aiko::Entity* entity = m_entities[i].get();
+            aiko::BodyEntity* entity = m_entities[i].get();
 
             entity->update(delta);
 
-            for (unsigned int j = 0; j < m_entities.size(); ++j)
-            {
-                if (i == j) continue;
-
-                aiko::Entity* other = m_entities[j].get();
-
-                if (entity->isColliding(*other) == true)
-                {
-                    entity->m_color = Utils::randomColor();
-                }
-
-            }
+            // check if bird collides with any pipe
+            // if ( m_pipeManager->isColliding(*entity) == true)
+            // {
+            //    entity->m_color = Utils::randomColor();
+            // }
 
         }
     }

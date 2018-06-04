@@ -4,8 +4,9 @@
 #include <memory>
 
 #include "../engine/kimo.h"
-#include "../engine/entity.h"
+#include "../engine/entities/entity.h"
 #include "../engine/camera.h"
+#include "pipe_manager.h"
 
 namespace flappybird
 {
@@ -21,7 +22,9 @@ namespace flappybird
 
     private:
 
-        std::vector<std::unique_ptr<aiko::Entity>> m_entities;
+        std::vector<std::unique_ptr<aiko::BodyEntity>> m_entities;
+
+        std::unique_ptr<PipeManager> m_pipeManager;
 
         aiko::Camera m_camera;
 

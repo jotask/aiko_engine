@@ -1,17 +1,15 @@
-#include "entity.h"
+#include "body_entity.h"
 
 #include <iostream>
-
-#include "../engine/utils.h"
 
 namespace aiko
 {
 
-    constexpr float Entity::MAX_SPEED = 1000.0f;
+    constexpr float BodyEntity::MAX_SPEED = 1000.0f;
 
     const sf::Vector2f GRAVITY = sf::Vector2f(0.0f, 0.0f);
 
-    b2Body* Entity::getBody(sf::Vector2f pos, sf::Shape* shape)
+    b2Body* BodyEntity::getBody(sf::Vector2f pos, sf::Shape* shape)
     {
         if (shape != nullptr) {
             if (sf::ConvexShape* v = dynamic_cast<sf::ConvexShape*>(shape))
@@ -64,7 +62,7 @@ namespace aiko
         return nullptr;
     }
 
-    Entity::Entity(std::unique_ptr<sf::Shape>&& shape)
+    BodyEntity::BodyEntity(std::unique_ptr<sf::Shape>&& shape)
         : m_pos(Utils::randomPointInScreen())
         , m_vel(Utils::random2D())
         , m_acc(0.0f, 0.0f)
@@ -73,7 +71,7 @@ namespace aiko
         , m_angle(Utils::random1D() * 360.0f)
         , m_speed(Utils::random1D() * MAX_SPEED)
         , time(0.0f)
-        , m_body(Entity::getBody(m_pos, m_shape.get()))
+        , m_body(BodyEntity::getBody(m_pos, m_shape.get()))
         , m_applyGravity(true)
         , m_drawBounds(false)
         , m_drawShapes(true)
@@ -83,12 +81,12 @@ namespace aiko
         // const auto* t = m_shape.get();
     }
 
-    Entity::~Entity()
+    BodyEntity::~BodyEntity()
     {
 
     }
 
-    void Entity::update(const TimeStamp& delta)
+    void BodyEntity::update(const TimeStamp& delta)
     {
         if (false)
         {
@@ -137,7 +135,7 @@ namespace aiko
 
     }
 
-    void Entity::bounceScreen()
+    void BodyEntity::bounceScreen()
     {
         if (m_pos.x < 0)
         {
@@ -162,7 +160,7 @@ namespace aiko
         }
     }
 
-    void Entity::render(sf::RenderWindow& window)
+    void BodyEntity::render(sf::RenderWindow& window)
     {
 
         const auto bounds = m_shape->getLocalBounds();
@@ -235,7 +233,7 @@ namespace aiko
 
     }
 
-    bool Entity::isColliding(Entity& other) const
+    bool BodyEntity::isColliding(BodyEntity& other) const
     {
         return m_shape->getGlobalBounds().intersects(other.m_shape->getGlobalBounds());
     }

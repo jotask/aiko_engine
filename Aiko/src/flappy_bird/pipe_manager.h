@@ -1,17 +1,23 @@
 #pragma once
 
-#include "../engine/entities/body_entity.h"
+#include "pipe.h"
+#include <vector>
 
 namespace flappybird
 {
 
-    class Pipe : public aiko::BodyEntity
+    class PipeManager : public aiko::Entity
     {
     public:
-        Pipe();
+
+        PipeManager();
 
         virtual void update(const aiko::TimeStamp& delta);
         virtual void render(sf::RenderWindow& window);
+
+    private:
+
+        std::vector<Pipe> m_pipes;
 
     };
 

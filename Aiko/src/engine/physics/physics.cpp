@@ -81,7 +81,7 @@ namespace aiko
         void Physics::registerComponents()
         {
             // m_components.push_back(std::make_unique<Wind>(Wind()));
-            REGISTER_COMPONENT(Wind)
+            // REGISTER_COMPONENT(Wind)
         }
 
 

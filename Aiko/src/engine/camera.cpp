@@ -22,7 +22,7 @@ namespace aiko
 
     }
 
-    bool Camera::inOnCamera(const Entity& entity) const
+    bool Camera::isOnCamera(const BodyEntity& entity) const
     {
         const auto bound = entity.m_shape.get()->getGlobalBounds();
         const auto our = Camera::getViewBounds(m_view);

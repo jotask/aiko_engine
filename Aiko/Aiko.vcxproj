@@ -164,6 +164,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\engine\camera.cpp" />
+    <ClCompile Include="src\engine\entities\entity.cpp" />
     <ClCompile Include="src\engine\physics\components\physicscomponent.cpp" />
     <ClCompile Include="src\engine\components\component.cpp" />
     <ClCompile Include="src\engine\aiko.cpp" />
@@ -179,15 +180,17 @@
     <ClCompile Include="src\engine\physics\physics.cpp" />
     <ClCompile Include="src\engine\physics\SFMLDebugDraw.cpp" />
     <ClCompile Include="src\flappy_bird\bird.cpp" />
-    <ClCompile Include="src\engine\entity.cpp" />
+    <ClCompile Include="src\engine\entities\body_entity.cpp" />
     <ClCompile Include="src\flappy_bird\flappy_bird.cpp" />
     <ClCompile Include="src\flappy_bird\pipe.cpp" />
+    <ClCompile Include="src\flappy_bird\pipe_manager.cpp" />
     <ClCompile Include="src\labyrinth\labyrinth.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\engine\camera.h" />
+    <ClInclude Include="src\engine\entities\entity.h" />
     <ClInclude Include="src\engine\physics\components\physicscomponent.h" />
     <ClInclude Include="src\engine\components\component.h" />
     <ClInclude Include="src\engine\aiko.h" />
@@ -205,9 +208,10 @@
     <ClInclude Include="src\engine\smart_enum.h" />
     <ClInclude Include="src\engine\time.h" />
     <ClInclude Include="src\flappy_bird\bird.h" />
-    <ClInclude Include="src\engine\entity.h" />
+    <ClInclude Include="src\engine\entities\body_entity.h" />
     <ClInclude Include="src\flappy_bird\flappy_bird.h" />
     <ClInclude Include="src\flappy_bird\pipe.h" />
+    <ClInclude Include="src\flappy_bird\pipe_manager.h" />
     <ClInclude Include="src\labyrinth\labyrinth.h" />
     <ClInclude Include="src\engine\utils.h" />
     <ClInclude Include="src\engine\physics\components\wind.h" />
