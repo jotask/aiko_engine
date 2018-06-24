@@ -1,5 +1,11 @@
 #pragma once
 
+#include <stdlib.h>
+
+#ifdef _WIN32
+#define WINPAUSE system("pause")
+#endif
+
 #include "../constants.h"
 
 // STL

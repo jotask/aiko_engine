@@ -3,6 +3,9 @@
 // STL
 #include <iostream>
 #include <cassert>
+#include <chrono>
+#include <thread>
+#include <future>
 
 // SFML
 #include <SFML/Graphics.hpp>
@@ -12,8 +15,12 @@
 #include "../code_art_lines/code.h"
 #include "../labyrinth/labyrinth.h"
 #include "../flappy_bird/flappy_bird.h"
+#include "../mandelbrot/mandelbrot.h"
+#include "../barnsleyfern/barnsleyfern.h"
 #include "physics/physics.h"
 #include "time.h"
+
+#include "entities/EntityManager.h"
 
 namespace aiko
 {
@@ -46,6 +53,12 @@ namespace aiko
         case STATE::FLAPPYBIRD:
             m_kimo.reset(new flappybird::FlappyBird());
             break;
+        case STATE::MANDELBROT:
+            m_kimo.reset(new mandelbrot::Mandelbrot());
+            break;
+        case STATE::BARNSLEYFERN:
+            m_kimo.reset(new barnsleyfern::BarnsleyFern());
+            break;
         default:
             assert(false);
         }
@@ -61,12 +74,16 @@ namespace aiko
 
         float delta = 0.0f;
 
-        renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), "SFML Demo");
+        static constexpr auto title = "Aiko Engine  Demo";
+
+        renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), title);
 
         init();
 
         auto& physics = aiko::physics::Physics::get();
         physics.init(renderWindow);
+
+        // f.get();
 
         TimeStamp timeStamp;
 
@@ -88,6 +105,9 @@ namespace aiko
             // Start the countdown over.  Think of laps on a stop watch.
             clock.restart();
             // update start
+            // printLater.join();
+            // EntityManager::get()->update(timeStamp);
+
             physics.update(timeStamp);
             m_kimo->update(timeStamp);
             // update end
@@ -95,7 +115,7 @@ namespace aiko
             // renderstar
             m_kimo->render(renderWindow);
             // debug
-            physics.render(renderWindow);
+            // physics.render(renderWindow);
             // render end
             renderWindow.display();
         }

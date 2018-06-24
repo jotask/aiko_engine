@@ -163,6 +163,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\barnsleyfern\barnsleyfern.cpp" />
+    <ClCompile Include="src\mandelbrot\mandelbrot.cpp" />
+    <ClCompile Include="src\engine\entities\EntityManager.cpp" />
     <ClCompile Include="src\engine\camera.cpp" />
     <ClCompile Include="src\engine\entities\entity.cpp" />
     <ClCompile Include="src\engine\physics\components\physicscomponent.cpp" />
@@ -190,6 +193,10 @@
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\barnsleyfern\barnsleyfern.h" />
+    <ClInclude Include="src\mandelbrot\mandelbrot.h" />
+    <ClInclude Include="src\engine\entities\EntityManager.h" />
+    <ClInclude Include="src\engine\algorithms\singleton.h" />
     <ClInclude Include="src\engine\camera.h" />
     <ClInclude Include="src\engine\entities\entity.h" />
     <ClInclude Include="src\engine\physics\components\physicscomponent.h" />

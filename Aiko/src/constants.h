@@ -24,6 +24,6 @@ int random(int low, int high);
 }
 */
 
-enum class STATE { LABYRINTH, CODE, FLAPPYBIRD }; // enum class
+enum class STATE { LABYRINTH, CODE, FLAPPYBIRD, MANDELBROT, BARNSLEYFERN }; // enum class
 
-#define START_STATE STATE::FLAPPYBIRD
+#define START_STATE STATE::BARNSLEYFERN
