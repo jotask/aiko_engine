@@ -16,6 +16,10 @@ public:
         return oStart + (oStop - oStart) * ((value - iStart) / (iStop - iStart));
     }
 
+    template <class T>
+    int getArray(T x, T y, float SIZE_Y) { x * SIZE_Y + y; }
+
+
     static sf::Vector2f randomPointInScreen();
     static sf::Vector2f random2D();
     static sf::Color randomColor(bool alpha = false);

@@ -19,6 +19,8 @@ namespace aiko
 
         bool isOnCamera(const BodyEntity& entity) const;
 
+        void setZoom(const float);
+
     private:
 
         static sf::FloatRect getViewBounds(const sf::View &view);

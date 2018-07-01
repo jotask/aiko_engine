@@ -22,6 +22,12 @@ namespace aiko
 
     }
 
+
+    void Camera::setZoom(const float z)
+    {
+        //m_zoom = z;
+    }
+
     bool Camera::isOnCamera(const BodyEntity& entity) const
     {
         const auto bound = entity.m_shape.get()->getGlobalBounds();

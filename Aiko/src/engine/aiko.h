@@ -11,6 +11,11 @@
 // STL
 #include <memory>
 
+namespace sf
+{
+    class RenderWindow;
+}
+
 namespace aiko
 {
 
@@ -32,6 +37,10 @@ namespace aiko
             return m_singleton;
         }
 
+        sf::RenderWindow* const getWindow() { return m_renderWindow; }
+
+        void setIsOpengl(bool isOpengl = false) { m_isOpengl = isOpengl; };
+
     private:
 
         void                         init();
@@ -40,6 +49,11 @@ namespace aiko
 
         std::unique_ptr<Kimo>   m_kimo;
         STATE                   m_state;
+
+        sf::RenderWindow* m_renderWindow;
+
+        bool m_isOpengl;
+
 
     };
 

@@ -27,7 +27,7 @@ namespace aiko
             if (len < 1000)
             {
                 unsigned int result = 0u;
-                for (auto i = 0u; i < len; i++)
+                for (auto i = 0; i < len; i++)
                 {
                     result += *beg;
                     beg++;

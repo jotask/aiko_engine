@@ -90,14 +90,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\glew\lib\Release\Win32;C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -108,14 +108,14 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\glew\lib\Release\Win32;C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glew32.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics-d.lib;sfml-audio-d.lib;sfml-network-d.lib;sfml-window-d.lib;sfml-system-d.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -137,7 +137,7 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -159,10 +159,16 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <AdditionalLibraryDirectories>C:\Users\Jose\Code\API\bulletphysics\bin;C:\Users\Jose\Code\API\Box2D\Build\vs2017\bin\Debug;C:\Users\Jose\Code\API\SFML\lib;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;LinearMath.lib;BulletCollision.lib;BulletDynamics.lib;BulletSoftBody.lib;box2d.lib;sfml-graphics.lib;sfml-audio.lib;sfml-network.lib;sfml-window.lib;sfml-system.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\opengl\renderer.cpp" />
+    <ClCompile Include="src\opengl\loader.cpp" />
+    <ClCompile Include="src\opengl\rawModel.cpp" />
+    <ClCompile Include="src\opengl\opengl.cpp" />
+    <ClCompile Include="src\engine\messages\message.cpp" />
+    <ClCompile Include="src\engine\messages\messageSystem.cpp" />
     <ClCompile Include="src\barnsleyfern\barnsleyfern.cpp" />
     <ClCompile Include="src\mandelbrot\mandelbrot.cpp" />
     <ClCompile Include="src\engine\entities\EntityManager.cpp" />
@@ -191,8 +197,15 @@
     <ClCompile Include="src\labyrinth\labyrinth.cpp" />
     <ClCompile Include="src\engine\utils.cpp" />
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
+    <ClCompile Include="src\engine\threads\threadSystem.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\opengl\renderer.h" />
+    <ClInclude Include="src\opengl\loader.h" />
+    <ClInclude Include="src\opengl\rawModel.h" />
+    <ClInclude Include="src\opengl\opengl.h" />
+    <ClInclude Include="src\engine\messages\message.h" />
+    <ClInclude Include="src\engine\messages\messageSystem.h" />
     <ClInclude Include="src\barnsleyfern\barnsleyfern.h" />
     <ClInclude Include="src\mandelbrot\mandelbrot.h" />
     <ClInclude Include="src\engine\entities\EntityManager.h" />
@@ -224,6 +237,7 @@
     <ClInclude Include="src\labyrinth\labyrinth.h" />
     <ClInclude Include="src\engine\utils.h" />
     <ClInclude Include="src\engine\physics\components\wind.h" />
+    <ClInclude Include="src\engine\threads\threadSystem.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\engine\perlinNoise\README.md" />
