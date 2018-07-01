@@ -6,9 +6,24 @@ namespace barnsleyfern
 {
 
     BarnsleyFern::BarnsleyFern()
-        : vertices(sf::Points, WIDTH * HEIGHT)
+        : coeficient(Coefficients())
+        , vertices(sf::Points, WIDTH * HEIGHT)
         , last (0.0f, 0.0f)
+        , camera()
+        , zoom(1.0f)
     {
+        for (unsigned int i = 0; i < WIDTH  ; i++)
+        for (unsigned int j = 0; j < HEIGHT ; j++)
+        {
+            const auto index = i * HEIGHT + j;
+
+
+            sf::Vertex v;
+            v.position = sf::Vector2f(i*1.0f, j*1.0f);
+            v.color = sf::Color::Transparent;
+
+            vertices[index] = v;
+        }
     }
 
     BarnsleyFern::~BarnsleyFern()
@@ -18,6 +33,8 @@ namespace barnsleyfern
 
     void BarnsleyFern::generate()
     {
+        static auto count = 0u;
+
         float nextX;
         float nextY;
 
@@ -43,7 +60,7 @@ namespace barnsleyfern
         else {
             // 4
             nextX = -0.15f * last.x + 0.28f * last.y;
-            nextY =  0.26 * last.x + 0.24f * last.y + 0.44f;
+            nextY =  0.26f * last.x + 0.24f * last.y + 0.44f;
         }
 
         last.x = nextX;
@@ -55,7 +72,7 @@ namespace barnsleyfern
 
         const auto index = static_cast<unsigned int>( py * WIDTH + px );
         vertices[index].position = sf::Vector2f(px, py);
-        vertices[index].color = sf::Color::Green;
+        //vertices[index].color = sf::Color::Green;
 
     }
 
@@ -63,10 +80,15 @@ namespace barnsleyfern
     {
         for(unsigned int i = 0 ; i < 500; i++)
             generate();
+
+        zoom -= 0.000001f;// *delta.delta;
+
+        camera.setZoom(zoom);
     }
 
     void BarnsleyFern::render(sf::RenderWindow& window)
     {
+        camera.render(window);
         window.draw(vertices);
     }
 
