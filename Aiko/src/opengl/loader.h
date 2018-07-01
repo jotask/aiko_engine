@@ -13,7 +13,7 @@ namespace opengl
         Loader();
         ~Loader();
 
-        RawModel* loadToVao(std::vector<float>& position);
+        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices);
 
     private:
 
@@ -22,9 +22,11 @@ namespace opengl
 
         GLuint createVao();
 
-        void storeDataInAttributeList(int attributteNUmber, std::vector<float>& data);
+        void storeDataInAttributeList(int attributteNUmber, std::vector<GLfloat>& data);
 
         void unbindVao();
+
+        void bindIndicesVbo(std::vector<GLuint>& indices);
 
 
     };

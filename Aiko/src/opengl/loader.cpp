@@ -18,13 +18,16 @@ namespace opengl
         for (const auto& vbo : m_vbos) glDeleteBuffers(1, &vbo);
     }
 
-    RawModel* Loader::loadToVao(std::vector<float>& positions)
+    RawModel* Loader::loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices)
     {
         GLuint vao;
         vao = createVao();
+
+        bindIndicesVbo(indices);
+
         storeDataInAttributeList(0, positions);
         unbindVao();
-        return new RawModel(vao, positions.size() / 3);
+        return new RawModel(vao, indices.size());
     }
 
     GLuint Loader::createVao()
@@ -55,6 +58,16 @@ namespace opengl
     void Loader::unbindVao()
     {
         glBindVertexArray(0);
+    }
+
+
+    void Loader::bindIndicesVbo(std::vector<GLuint>& indices)
+    {
+        GLuint vbo;
+        glGenBuffers(1, &vbo);
+        m_vbos.push_back(vbo);
+        glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, vbo);
+        glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * 1 * indices.size(), &indices[0], GL_STATIC_DRAW);
     }
 
 }

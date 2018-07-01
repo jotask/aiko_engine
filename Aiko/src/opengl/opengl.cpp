@@ -10,16 +10,21 @@ namespace opengl
         , m_renderer(new Renderer())
         , m_model(nullptr)
     {
-        std::vector<float> vertices({
-            -0.5f, 0.5f, 0.0f,
+        std::vector<float> vertices
+        ({
+            -0.5f,  0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.5f, -0.5f, 0.0f,
-            0.5f, 0.5f, 0.0f,
-            -0.5f, 0.5f, 0.0f
+             0.5f, -0.5f, 0.0f,
+             0.5f,  0.5f, 0.0f
         });
 
-        m_model = m_loader->loadToVao(vertices);
+        std::vector<GLuint> indices
+        ({
+            0, 1, 3,
+            3, 1, 2
+        });
+
+        m_model = m_loader->loadToVao(vertices, indices);
 
     }
 
