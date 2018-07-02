@@ -163,6 +163,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\opengl\shaders\shader_program.cpp" />
+    <ClCompile Include="src\opengl\shaders\shader.cpp" />
     <ClCompile Include="src\opengl\renderer.cpp" />
     <ClCompile Include="src\opengl\loader.cpp" />
     <ClCompile Include="src\opengl\rawModel.cpp" />
@@ -198,8 +200,11 @@
     <ClCompile Include="src\engine\utils.cpp" />
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
     <ClCompile Include="src\engine\threads\threadSystem.cpp" />
+    <ClCompile Include="src\opengl\shaders\static_shader.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\opengl\shaders\shader_program.h" />
+    <ClInclude Include="src\opengl\shaders\shader.h" />
     <ClInclude Include="src\opengl\renderer.h" />
     <ClInclude Include="src\opengl\loader.h" />
     <ClInclude Include="src\opengl\rawModel.h" />
@@ -238,9 +243,16 @@
     <ClInclude Include="src\engine\utils.h" />
     <ClInclude Include="src\engine\physics\components\wind.h" />
     <ClInclude Include="src\engine\threads\threadSystem.h" />
+    <ClInclude Include="src\opengl\shaders\shader_types.h" />
+    <ClInclude Include="src\opengl\shaders\shader_utils.h" />
+    <ClInclude Include="src\opengl\shaders\static_shader.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\engine\perlinNoise\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="src\opengl\shaders\fragment.txt" />
+    <Text Include="src\opengl\shaders\vertex.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

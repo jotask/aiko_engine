@@ -5,6 +5,8 @@
 #include "loader.h"
 #include "renderer.h"
 
+#include "shaders/shader_program.h"
+
 namespace opengl
 {
 
@@ -23,6 +25,8 @@ namespace opengl
         Renderer*    m_renderer;
 
         RawModel*    m_model;
+
+        aiko::ShaderProgram* m_shader;
 
     };
 
