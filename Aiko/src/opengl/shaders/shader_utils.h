@@ -29,6 +29,7 @@ namespace aiko
             std::ifstream file(f);
             std::string out = slurp(file);
             file.close();
+            // texturing
             return out;
         }
 
