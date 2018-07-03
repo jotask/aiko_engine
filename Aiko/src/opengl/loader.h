@@ -15,10 +15,13 @@ namespace opengl
 
         RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices);
 
+        GLuint loadTexture(std::string& filename);
+
     private:
 
         std::vector<GLuint> m_vaos;
         std::vector<GLuint> m_vbos;
+        std::vector<GLuint> m_textures;
 
         GLuint createVao();
 
