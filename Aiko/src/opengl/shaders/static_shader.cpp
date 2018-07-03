@@ -5,10 +5,12 @@
 namespace aiko
 {
 
-    StaticShader::StaticShader()
-        : ShaderProgram("vertex.txt", "fragment.txt", this)
-    {
+    static const std::string PATH = "C:\\Users\\Jose\\Code\\aiko_engine\\Aiko\\src\\opengl\\shaders\\";
 
+    StaticShader::StaticShader()
+        : ShaderProgram(PATH + "vertex.txt", PATH + "fragment.txt")
+    {
+        bindAttributes();
     }
 
     StaticShader::~StaticShader()

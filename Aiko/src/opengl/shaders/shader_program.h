@@ -6,12 +6,11 @@
 
 namespace aiko
 {
-    class StaticShader;
 
     class ShaderProgram
     {
     public:
-        ShaderProgram(std::string vertex, std::string fragment, StaticShader* something);
+        ShaderProgram(std::string vertex, std::string fragment);
         ~ShaderProgram();
 
         const GLuint getProgramId() const;

@@ -4,6 +4,7 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <sstream>
 #include <cassert>
 #include <GL/glew.h>
 
@@ -17,19 +18,16 @@ namespace aiko
 
     public:
 
+        static std::string slurp(std::ifstream& in)
+        {
+            // thank you (: https://stackoverflow.com/a/116220/6872881
+            return static_cast<std::stringstream const&>(std::stringstream() << in.rdbuf()).str();
+        }
+
         static std::string loadFile(const std::string& f)
         {
-            std::string out;
-            std::ifstream file;
-            file.open(f);
-            if (file.is_open())
-            {
-                while (!file.eof())
-                {
-                    file >> out;
-                    std::cout << out;
-                }
-            }
+            std::ifstream file(f);
+            std::string out = slurp(file);
             file.close();
             return out;
         }
@@ -58,7 +56,7 @@ namespace aiko
             glGetShaderiv(vertShader, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> vertShaderError((logLength > 1) ? logLength : 1);
             glGetShaderInfoLog(vertShader, logLength, NULL, &vertShaderError[0]);
-            std::cout << &vertShaderError[0] << std::endl;
+            std::cout << "Error sexy: " << &vertShaderError[0] << std::endl;
 
             // Compile fragment shader
             std::cout << "Compiling fragment shader." << std::endl;
@@ -70,7 +68,7 @@ namespace aiko
             glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> fragShaderError((logLength > 1) ? logLength : 1);
             glGetShaderInfoLog(fragShader, logLength, NULL, &fragShaderError[0]);
-            std::cout << &fragShaderError[0] << std::endl;
+            std::cout << "Error sexy: " << &fragShaderError[0] << std::endl;
 
             std::cout << "Linking program" << std::endl;
             GLuint program = glCreateProgram();
@@ -82,7 +80,7 @@ namespace aiko
             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> programError((logLength > 1) ? logLength : 1);
             glGetProgramInfoLog(program, logLength, NULL, &programError[0]);
-            std::cout << &programError[0] << std::endl;
+            std::cout << "Error sexy: " << &programError[0] << std::endl;
 
             glDeleteShader(vertShader);
             glDeleteShader(fragShader);

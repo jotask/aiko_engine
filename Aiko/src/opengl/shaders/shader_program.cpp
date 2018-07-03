@@ -8,12 +8,10 @@
 namespace aiko
 {
 
-    ShaderProgram::ShaderProgram(std::string vertex, std::string fragment, StaticShader* something)
+    ShaderProgram::ShaderProgram(std::string vertex, std::string fragment)
         : m_programId (ShaderUtils::loadShader(vertex, fragment))
     {
-        std::cout << "hello" << std::endl;
         glValidateProgram(m_programId);
-        something->bindAttributes();
     }
 
     ShaderProgram::~ShaderProgram()
