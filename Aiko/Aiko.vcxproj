@@ -201,6 +201,7 @@
     <ClCompile Include="src\engine\physics\components\wind.cpp" />
     <ClCompile Include="src\engine\threads\threadSystem.cpp" />
     <ClCompile Include="src\opengl\shaders\static_shader.cpp" />
+    <ClCompile Include="src\engine\state_machine\state_machine.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\opengl\shaders\shader_program.h" />
@@ -246,6 +247,7 @@
     <ClInclude Include="src\opengl\shaders\shader_types.h" />
     <ClInclude Include="src\opengl\shaders\shader_utils.h" />
     <ClInclude Include="src\opengl\shaders\static_shader.h" />
+    <ClInclude Include="src\engine\state_machine\state_machine.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="src\engine\perlinNoise\README.md" />

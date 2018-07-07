@@ -15,13 +15,6 @@
 #include <SFML/OpenGL.hpp>
 
 // aiko
-#include "../constants.h"
-#include "../code_art_lines/code.h"
-#include "../labyrinth/labyrinth.h"
-#include "../flappy_bird/flappy_bird.h"
-#include "../opengl/opengl.h"
-#include "../mandelbrot/mandelbrot.h"
-#include "../barnsleyfern/barnsleyfern.h"
 #include "physics/physics.h"
 #include "time.h"
 
@@ -31,8 +24,7 @@ namespace aiko
 {
 
     Aiko::Aiko()
-        : m_kimo(nullptr)
-        , m_state(START_STATE)
+        : m_state()
         , m_renderWindow(nullptr)
         , m_isOpengl(true)
     {
@@ -47,33 +39,8 @@ namespace aiko
 
     void Aiko::init()
     {
-
         aiko::physics::Physics::get();
-
-        switch (m_state)
-        {
-        case STATE::LABYRINTH:
-            m_kimo.reset(new labyrinth::Lab());
-            break;
-        case STATE::CODE:
-            m_kimo.reset(new code::Code());
-            break;
-        case STATE::FLAPPYBIRD:
-            m_kimo.reset(new flappybird::FlappyBird());
-            break;
-        case STATE::MANDELBROT:
-            m_kimo.reset(new mandelbrot::Mandelbrot());
-            break;
-        case STATE::BARNSLEYFERN:
-            m_kimo.reset(new barnsleyfern::BarnsleyFern());
-            break;
-        case STATE::OPENGL:
-            m_kimo.reset(new opengl::Opengl());
-            break;
-        default:
-            assert(false);
-        }
-
+        m_state.init();
     }
 
     void Aiko::run()
@@ -148,16 +115,24 @@ namespace aiko
             // EntityManager::get()->update(timeStamp);
 
             physics.update(timeStamp);
-            m_kimo->update(timeStamp);
+            m_state.preUpdate(timeStamp);
+            m_state.update(timeStamp);
+            m_state.postUpdate(timeStamp);
             // update end
             // m_renderWindow->clear(sf::Color::Black);
             // clear the buffers
             glClearColor(0.2f,  0.3f, 0.2f,1.0f);
             glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
             // renderstar
-            m_kimo->render(*m_renderWindow);
+            m_state.preRender(*m_renderWindow);
+            m_state.render(*m_renderWindow);
+            m_state.postRender(*m_renderWindow);
             // debug
             // physics.render(renderWindow);
+
+            m_state.preDebug(*m_renderWindow);
+            m_state.debug(*m_renderWindow);
+            m_state.postDebug(*m_renderWindow);
             // render end
             m_renderWindow->display();
         }

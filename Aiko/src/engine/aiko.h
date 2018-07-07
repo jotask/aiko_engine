@@ -1,15 +1,12 @@
 #pragma once
 
-#include <stdlib.h>
-
-#ifdef _WIN32
-#define WINPAUSE system("pause")
-#endif
-
-#include "../constants.h"
-
 // STL
 #include <memory>
+#include <stdlib.h>
+
+// aiko
+#include "../constants.h"
+#include "state_machine/state_machine.h"
 
 namespace sf
 {
@@ -45,10 +42,9 @@ namespace aiko
 
         void                         init();
 
-        static std::shared_ptr<Aiko> m_singleton;
+        StateMachine                m_state;
 
-        std::unique_ptr<Kimo>   m_kimo;
-        STATE                   m_state;
+        static std::shared_ptr<Aiko> m_singleton;
 
         sf::RenderWindow* m_renderWindow;
 
