@@ -23,7 +23,6 @@ namespace aiko
 
     }
 
-
     void StateMachine::init()
     {
         changeState(m_currentState);

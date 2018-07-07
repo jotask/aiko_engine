@@ -58,11 +58,14 @@ namespace aiko
         // renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::None);
 
         sf::ContextSettings settings;
-        settings.depthBits = 24;
-        settings.stencilBits = 8;
-        settings.majorVersion = 3;
-        settings.minorVersion = 3;
-        settings.attributeFlags = sf::ContextSettings::Core;
+        if (m_isOpengl == true)
+        {
+            settings.depthBits = 24;
+            settings.stencilBits = 8;
+            settings.majorVersion = 3;
+            settings.minorVersion = 3;
+            settings.attributeFlags = sf::ContextSettings::Core;
+        }
 
         m_renderWindow->create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::Default, settings);
         m_renderWindow->setActive(true);
@@ -83,8 +86,6 @@ namespace aiko
         auto& physics = aiko::physics::Physics::get();
         physics.init(*m_renderWindow);
 
-        // f.get();
-
         TimeStamp timeStamp;
 
         while (m_renderWindow->isOpen()) {
@@ -97,8 +98,11 @@ namespace aiko
                 }
                 else if (event.type == sf::Event::Resized)
                 {
-                    // adjust the viewport when the window is resized
-                    glViewport(0, 0, event.size.width, event.size.height);
+                    if (m_isOpengl == true)
+                    {
+                        // adjust the viewport when the window is resized
+                        glViewport(0, 0, event.size.width, event.size.height);
+                    }
                 }
 
                 physics.input(event);
@@ -112,27 +116,33 @@ namespace aiko
             clock.restart();
             // update start
             // printLater.join();
-            // EntityManager::get()->update(timeStamp);
+            EntityManager::get()->update(timeStamp);
 
-            physics.update(timeStamp);
             m_state.preUpdate(timeStamp);
             m_state.update(timeStamp);
             m_state.postUpdate(timeStamp);
             // update end
-            // m_renderWindow->clear(sf::Color::Black);
             // clear the buffers
-            glClearColor(0.2f,  0.3f, 0.2f,1.0f);
-            glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+            if (m_isOpengl == true)
+            {
+                glClearColor(0.2f, 0.3f, 0.2f, 1.0f);
+                glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+            }
+            else
+            {
+                m_renderWindow->clear(sf::Color::Black);
+            }
             // renderstar
             m_state.preRender(*m_renderWindow);
             m_state.render(*m_renderWindow);
             m_state.postRender(*m_renderWindow);
-            // debug
-            // physics.render(renderWindow);
 
+            // debug
             m_state.preDebug(*m_renderWindow);
             m_state.debug(*m_renderWindow);
             m_state.postDebug(*m_renderWindow);
+            // physics.render(renderWindow);
             // render end
             m_renderWindow->display();
         }

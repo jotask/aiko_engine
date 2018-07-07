@@ -42,7 +42,7 @@ namespace aiko
         history.push_back(time);
         historyB.push_back(time);
 
-        std::cout << "The sum is " << r << " and toke: { " << time << " }." << std::endl;
+        // std::cout << "The sum is " << r << " and toke: { " << time << " }." << std::endl;
 
         float i;
         i = 0.0f;
@@ -51,7 +51,7 @@ namespace aiko
             auto tmp = (i / static_cast<float>(history.size()));
             static constexpr const auto z = 1000000.0f;
             tmp = (int)(tmp * z) / z;
-            std::cout << "The mean is: { " << tmp << " }." << std::endl;
+            // std::cout << "The mean is: { " << tmp << " }." << std::endl;
         }
         i = 0.0f;
         {
@@ -59,12 +59,12 @@ namespace aiko
             auto tmp = (i / static_cast<float>(historyB.size()));
             static constexpr const auto z = 1000000.0f;
             tmp = (int)(tmp * z) / z;
-            std::cout << "The mean is: { " << tmp << " }." << std::endl;
+            // std::cout << "The mean is: { " << tmp << " }." << std::endl;
         }
 
-        std::cout << "Bye" << std::endl;
+        // std::cout << "Bye" << std::endl;
 
-        std::this_thread::sleep_for(std::chrono::seconds(5));
+        // std::this_thread::sleep_for(std::chrono::seconds(5));
 
     }
 

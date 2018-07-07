@@ -13,7 +13,6 @@ int random(int low, int high);
 // include for everyone
 //#include "engine/aiko.h"
 
-
 /*
 #include <Windows.h>
 #define DBOUT( s )            \
@@ -26,4 +25,4 @@ int random(int low, int high);
 
 enum class STATE { LABYRINTH, CODE, FLAPPYBIRD, MANDELBROT, BARNSLEYFERN, OPENGL }; // enum class
 
-#define START_STATE STATE::OPENGL
+#define START_STATE STATE::BARNSLEYFERN
