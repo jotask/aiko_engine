@@ -8,8 +8,8 @@ namespace mandelbrot
         , isDirty(true)
         , zoom(300.0f)
         , precision(100)
-        , xShift(WIDTH  * 0.5f)
-        , yShift(HEIGHT * 0.5f)
+        , xShift(WIDTH  / 2)
+        , yShift(HEIGHT / 2)
     {
         reset();
     }

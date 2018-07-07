@@ -8,7 +8,7 @@ namespace opengl
     class RawModel
     {
     public:
-        RawModel(GLuint vao, unsigned int vertexCount);
+        RawModel(GLuint vao, size_t vertexCount);
         ~RawModel();
 
         GLint        getVao()           const;
@@ -17,7 +17,7 @@ namespace opengl
     private:
 
         GLuint        m_vaoID;
-        unsigned int  m_vertexCount;
+        size_t        m_vertexCount;
 
     };
 
