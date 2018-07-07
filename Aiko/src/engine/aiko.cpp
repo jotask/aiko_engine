@@ -26,7 +26,7 @@ namespace aiko
     Aiko::Aiko()
         : m_state()
         , m_renderWindow(nullptr)
-        , m_isOpengl(true)
+        , m_isOpengl(false)
     {
 
     }
@@ -57,17 +57,21 @@ namespace aiko
 
         // renderWindow.create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::None);
 
-        sf::ContextSettings settings;
         if (m_isOpengl == true)
         {
+            sf::ContextSettings settings;
             settings.depthBits = 24;
             settings.stencilBits = 8;
             settings.majorVersion = 3;
             settings.minorVersion = 3;
             settings.attributeFlags = sf::ContextSettings::Core;
+            m_renderWindow->create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::Default, settings);
+        }
+        else
+        {
+            m_renderWindow->create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::Default);
         }
 
-        m_renderWindow->create(sf::VideoMode(WIDTH, HEIGHT), title, sf::Style::Default, settings);
         m_renderWindow->setActive(true);
 
         if (m_isOpengl == true)
@@ -135,13 +139,13 @@ namespace aiko
             }
             // renderstar
             m_state.preRender(*m_renderWindow);
-            m_state.render(*m_renderWindow);
+             m_state.render(*m_renderWindow);
             m_state.postRender(*m_renderWindow);
 
             // debug
-            m_state.preDebug(*m_renderWindow);
-            m_state.debug(*m_renderWindow);
-            m_state.postDebug(*m_renderWindow);
+            //m_state.preDebug(*m_renderWindow);
+            //m_state.debug(*m_renderWindow);
+            //m_state.postDebug(*m_renderWindow);
             // physics.render(renderWindow);
             // render end
             m_renderWindow->display();
