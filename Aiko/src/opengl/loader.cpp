@@ -1,8 +1,18 @@
 #include "loader.h"
 
+#include <cassert>
+#include <stdlib.h>
+#include <stdio.h>
+#include <iostream>
+
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <stdbool.h>
+#include <png.h>
 #include <GL/glew.h>
 
-#include <cassert>
+#include <GL/glew.h>
 
 namespace opengl
 {
@@ -16,6 +26,7 @@ namespace opengl
     {
         for (const auto& vao : m_vaos) glDeleteVertexArrays(1, &vao);
         for (const auto& vbo : m_vbos) glDeleteBuffers(1, &vbo);
+        for (const auto& text : m_textures) glDeleteTextures(1, &text);
     }
 
     RawModel* Loader::loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices)
@@ -24,7 +35,7 @@ namespace opengl
         vao = createVao();
 
         bindIndicesVbo(indices);
-
+ 
         storeDataInAttributeList(0, positions);
         unbindVao();
         return new RawModel(vao, indices.size());
@@ -70,54 +81,81 @@ namespace opengl
         glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(GLuint) * 1 * indices.size(), &indices[0], GL_STATIC_DRAW);
     }
 
-    GLuint Loader::loadTexture(std::string& filename)
+    static unsigned char* load_image_new(const char* filename, int* w, int* h)
     {
-        // Data read from the header of the BMP file
-        unsigned char header[54]; // Each BMP file begins by a 54-bytes header
-        unsigned int dataPos;     // Position in the file where the actual data begins
-        unsigned int width, height;
-        unsigned int imageSize;   // = width*height*3
-                                  // Actual RGB data
-        unsigned char * data;
+        FILE* fp = fopen(filename, "rb");
 
-        FILE * file = fopen(filename.c_str(), "rb");
-        if (!file) { printf("Image could not be opened\n"); return 0; }
-
-        // The first thing in the file is a 54 - bytes header.
-        // It contains information such as “Is this file really a BMP file ? ”,
-        // the size of the image, the number of bits per pixel, etc.So let’s read this header
-        if (fread(header, 1, 54, file) != 54) { // If not 54 bytes read : problem
-            printf("Not a correct BMP file\n");
-            return false;
+        if (fp == NULL)
+        {
+            fprintf(stderr, "ERROR: cannot open texture file '%s'\n", filename);
+            return NULL;
         }
 
-        // So we have to check that the two first bytes are really ‘B’ and ‘M’ :
-        if (header[0] != 'B' || header[1] != 'M') {
-            printf("Not a correct BMP file\n");
-            return 0;
+        int x, y;
+
+        png_structp readStruct;
+        png_infop info;
+        char header[8];
+        unsigned char* buf;
+
+        fread(header, 1, 8, fp);
+        if (png_sig_cmp(header, 0, 8) != 0)
+        {
+            fprintf(stderr, "ERROR: file '%s' is not a PNG file\n", filename);
+            fclose(fp);
+            return NULL;
         }
 
-        //Now we can read the size of the image, the location of the data in the file, etc :
-        // Read ints from the byte array
-        dataPos = *(int*)&(header[0x0A]);
-        imageSize = *(int*)&(header[0x22]);
-        width = *(int*)&(header[0x12]);
-        height = *(int*)&(header[0x16]);
+        // We did not set error pointers or error handling codes (setjmp..)
+        // If there're some problems in the PNG file, the application will be
+        // killed (by OS).
+        readStruct = png_create_read_struct(PNG_LIBPNG_VER_STRING, NULL, NULL, NULL);
 
-        //We have to make up some info if it’s missing :
-        // Some BMP files are misformatted, guess missing information
-        if (imageSize == 0)    imageSize = width * height * 3; // 3 : one byte for each Red, Green and Blue component
-        if (dataPos == 0)      dataPos = 54; // The BMP header is done that way
+        info = png_create_info_struct(readStruct);
 
-        // Now that we know the size of the image, we can allocate some memory to read the image into, and read :
-        // Create a buffer
-        data = new unsigned char[imageSize];
+        png_set_read_fn(readStruct, fp, my_read);
 
-        // Read the actual data from the file into the buffer
-        fread(data, 1, imageSize, file);
+        png_set_sig_bytes(readStruct, 8);
 
-        //Everything is in memory now, the file can be closed
-        fclose(file);
+        png_read_info(readStruct, info);
+
+        *w = png_get_image_width(readStruct, info);
+        *h = png_get_image_height(readStruct, info);
+
+        if (power_of_2(*w) == false || power_of_2(*h) == false)
+        {
+            fprintf(stderr, "WARNING: texture have non-power-of-2 dimensions (width or height)\n");
+        }
+
+        if (png_get_color_type(readStruct, info) != PNG_COLOR_TYPE_RGB_ALPHA
+            || png_get_bit_depth(readStruct, info) != 8)
+        {
+            fprintf(stderr, "WARNING: color type or bit depth not as expected");
+            png_destroy_read_struct(&readStruct, &info, NULL);
+            return NULL;
+        }
+
+        buf = malloc(*w * *h * 4);
+        unsigned char** rowPointers = malloc(sizeof(unsigned char*) * (*h));
+        int i;
+        // This causes the last row placed in the start of the buffer, 
+        // as OpenGL's assumption.
+        // i.e. OpenGL's texture driver assumes upside-down image be sent
+        for (i = 0; i < (*h); i++)
+        {
+            rowPointers[(*h) - i - 1] = &buf[i * (*w) * 4];
+        }
+
+        png_read_image(readStruct, rowPointers);
+
+        png_destroy_read_struct(&readStruct, &info, NULL);
+        fclose(fp);
+        free(rowPointers);
+        return buf;
+    }
+
+    GLuint Loader::loadTexture(const std::string& filename)
+    {
 
         // Create one OpenGL texture
         GLuint textureID;
@@ -127,7 +165,7 @@ namespace opengl
         glBindTexture(GL_TEXTURE_2D, textureID);
 
         // Give the image to OpenGL
-        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_BGR, GL_UNSIGNED_BYTE, data);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, image.get_width(), image.get_height(), 0, GL_BGR, GL_UNSIGNED_BYTE, );
 
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST);
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);

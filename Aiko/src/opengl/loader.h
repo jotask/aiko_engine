@@ -2,7 +2,7 @@
 
 #include <vector>
 
-#include "rawModel.h"
+#include "models/raw_model.h"
 
 namespace opengl
 {
@@ -15,7 +15,7 @@ namespace opengl
 
         RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices);
 
-        GLuint loadTexture(std::string& filename);
+        GLuint loadTexture(const std::string& filename);
 
     private:
 

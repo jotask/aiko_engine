@@ -11,6 +11,7 @@ namespace opengl
         : m_loader(new Loader())
         , m_renderer(new Renderer())
         , m_model(nullptr)
+        , m_textureModel(nullptr)
         , m_shader(new aiko::StaticShader())
     {
         std::vector<float> vertices
@@ -29,11 +30,18 @@ namespace opengl
 
         m_model = m_loader->loadToVao(vertices, indices);
 
+        const std::string tmp("image.png");
+        ModelTexture* modelTexture = new ModelTexture(m_loader->loadTexture(tmp));
+        
+        m_textureModel = new TexturedModel(m_model, modelTexture);
+
     }
 
     Opengl::~Opengl()
     {
         delete m_shader;
+        delete m_model;
+        delete m_textureModel;
     }
 
     void Opengl::update(const aiko::TimeStamp& delta)
@@ -47,7 +55,7 @@ namespace opengl
         m_shader->start();
 
         m_renderer->prepare();
-        m_renderer->render(*m_model);
+        m_renderer->render(*m_textureModel);
 
         m_shader->stop();
     }

@@ -47,7 +47,6 @@ namespace aiko
             int logLength;
 
             // Compile vertex shader
-            std::cout << "Compiling vertex shader." << std::endl;
             glShaderSource(vertShader, 1, &vertShaderSrc, NULL);
             glCompileShader(vertShader);
 
@@ -56,10 +55,9 @@ namespace aiko
             glGetShaderiv(vertShader, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> vertShaderError((logLength > 1) ? logLength : 1);
             glGetShaderInfoLog(vertShader, logLength, NULL, &vertShaderError[0]);
-            std::cout << "Error sexy: " << &vertShaderError[0] << std::endl;
+            if (vertShaderError.size() > 1) std::cout << "Compiling vertex shader :: " << &vertShaderError[0] << std::endl;
 
             // Compile fragment shader
-            std::cout << "Compiling fragment shader." << std::endl;
             glShaderSource(fragShader, 1, &fragShaderSrc, NULL);
             glCompileShader(fragShader);
 
@@ -68,9 +66,8 @@ namespace aiko
             glGetShaderiv(fragShader, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> fragShaderError((logLength > 1) ? logLength : 1);
             glGetShaderInfoLog(fragShader, logLength, NULL, &fragShaderError[0]);
-            std::cout << "Error sexy: " << &fragShaderError[0] << std::endl;
+            if (fragShaderError.size() > 1) std::cout << "Compiling fragment shader :: " << fragShaderError.size() << &fragShaderError[0] << std::endl;
 
-            std::cout << "Linking program" << std::endl;
             GLuint program = glCreateProgram();
             glAttachShader(program, vertShader);
             glAttachShader(program, fragShader);
@@ -80,7 +77,7 @@ namespace aiko
             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);
             std::vector<char> programError((logLength > 1) ? logLength : 1);
             glGetProgramInfoLog(program, logLength, NULL, &programError[0]);
-            std::cout << "Error sexy: " << &programError[0] << std::endl;
+            if(programError.size() > 1) std::cout << "Linking program :: " << &programError[0] << std::endl;
 
             glDeleteShader(vertShader);
             glDeleteShader(fragShader);

@@ -7,6 +7,9 @@
 
 #include "shaders/shader_program.h"
 
+#include "models/textured_model.h"
+#include "models/raw_model.h"
+
 namespace opengl
 {
 
@@ -24,7 +27,8 @@ namespace opengl
         Loader*      m_loader;
         Renderer*    m_renderer;
 
-        RawModel*    m_model;
+        RawModel*       m_model;
+        TexturedModel*   m_textureModel;
 
         aiko::ShaderProgram* m_shader;
 

@@ -1,4 +1,4 @@
-#include "rawModel.h"
+#include "raw_model.h"
 
 namespace opengl
 {
