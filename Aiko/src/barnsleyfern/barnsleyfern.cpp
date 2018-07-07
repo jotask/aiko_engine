@@ -72,7 +72,7 @@ namespace barnsleyfern
 
         const auto index = static_cast<unsigned int>( py * WIDTH + px );
         vertices[index].position = sf::Vector2f(px, py);
-        //vertices[index].color = sf::Color::Green;
+        vertices[index].color = sf::Color::Green;
 
     }
 
