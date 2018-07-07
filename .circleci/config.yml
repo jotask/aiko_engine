@@ -1,13 +1,40 @@
-version: 2
+
+# version: 2
+# jobs:
+ # build:
+ #   docker:
+ #     - image: debian:stretch
+  #  steps:
+   #   - checkout
+    #  - run:
+     #     name: Greeting
+      #    command: echo Hello, world.
+      #- run:
+       #   name: Print the Current Time
+        #  command: date
+
+version: 2.0
 jobs:
-  build:
+  build_gcc_6:
     docker:
-      - image: debian:stretch
+      - image: gcc:6
     steps:
       - checkout
-      - run:
-          name: Greeting
-          command: echo Hello, world.
-      - run:
-          name: Print the Current Time
-          command: date
+      - run: mkdir -p build && cd build
+      - run: g++ -o main main.cpp -std=c++14
+      - run: ./main
+  build_gcc_latest:
+    docker:
+      - image: gcc:latest
+    steps:
+      - checkout
+      - run: mkdir -p build && cd build
+      - run: g++ -o main main.cpp -std=c++17
+      - run: ./main
+
+workflows:
+  version: 2
+  build_and_test:
+    jobs:
+      - build_gcc_6
+      - build_gcc_latest
