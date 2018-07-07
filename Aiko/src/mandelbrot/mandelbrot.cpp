@@ -46,7 +46,7 @@ namespace mandelbrot
         {
             for (int j = 0; j < WIDTH; j++)
             {
-                points[i * WIDTH + j].position = sf::Vector2f(j, i);
+                points[i * WIDTH + j].position = sf::Vector2f(j * 1.0f, i * 1.0f);
                 points[i * WIDTH + j].color = sf::Color::Red;
             }
         }
@@ -84,20 +84,20 @@ namespace mandelbrot
                 //color pixel based on the number of iterations
                 if (iterations < precision / 4.0f)
                 {
-                    points[i*WIDTH + j].position = sf::Vector2f(j, i);
-                    sf::Color color(iterations * 255.0f / (precision / 4.0f), 0, 0);
+                    points[i*WIDTH + j].position = sf::Vector2f(j * 1.f, i*1.0f);
+                    sf::Color color(static_cast<sf::Uint8>(iterations * 255.0f / (precision / 4.0f)), 0, 0);
                     points[i*WIDTH + j].color = color;
                 }
                 else if (iterations < precision / 2.0f)
                 {
-                    points[i*WIDTH + j].position = sf::Vector2f(j, i);
-                    sf::Color color(0, iterations * 255.0f / (precision / 2.0f), 0);
+                    points[i*WIDTH + j].position = sf::Vector2f(j * 1.0f, i * 1.0f);
+                    sf::Color color(0, static_cast<sf::Uint8>(iterations * 255.0f / (precision / 2.0f)), 0);
                     points[i*WIDTH + j].color = color;
                 }
                 else if (iterations < precision)
                 {
-                    points[i*WIDTH + j].position = sf::Vector2f(j, i);
-                    sf::Color color(0, 0, iterations * 255.0f / precision);
+                    points[i*WIDTH + j].position = sf::Vector2f(j * 1.0f, i * 1.0f);
+                    sf::Color color(0, 0, static_cast<sf::Uint8>(iterations * 255.0f / precision));
                     points[i*WIDTH + j].color = color;
                 }
             }
