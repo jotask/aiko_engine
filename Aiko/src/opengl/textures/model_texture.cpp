@@ -3,6 +3,8 @@
 namespace opengl
 {
 
+    const float ModelTexture::textureCoords[] = { 0,0, 0,1, 1,1, 1,0 };
+
     ModelTexture::ModelTexture(GLuint id)
         : m_textureId (id)
     {

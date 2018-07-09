@@ -13,7 +13,7 @@ namespace opengl
         Loader();
         ~Loader();
 
-        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices);
+        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, const std::vector<float>& uvs);
 
         GLuint loadTexture(const std::string& filename);
 
@@ -25,7 +25,7 @@ namespace opengl
 
         GLuint createVao();
 
-        void storeDataInAttributeList(int attributteNUmber, std::vector<GLfloat>& data);
+        void storeDataInAttributeList(int attributteNUmber, const unsigned int dataSize, std::vector<GLfloat>& data);
 
         void unbindVao();
 

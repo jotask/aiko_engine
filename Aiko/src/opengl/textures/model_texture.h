@@ -13,6 +13,8 @@ namespace opengl
 
         const GLuint getId() const;
 
+        static const float textureCoords[];
+
     private:
         const GLuint m_textureId;
     };
