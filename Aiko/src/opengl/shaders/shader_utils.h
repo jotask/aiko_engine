@@ -8,8 +8,6 @@
 #include <cassert>
 #include <GL/glew.h>
 
-#include "shader_types.h"
-
 namespace aiko
 {
 

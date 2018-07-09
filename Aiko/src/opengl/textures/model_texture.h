@@ -2,6 +2,8 @@
 
 #include <GL/glew.h>
 
+#include <vector>
+
 namespace opengl
 {
 
@@ -13,7 +15,7 @@ namespace opengl
 
         const GLuint getId() const;
 
-        static const float textureCoords[];
+        static std::vector<float> textureCoords;
 
     private:
         const GLuint m_textureId;

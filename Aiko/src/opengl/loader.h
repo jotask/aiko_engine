@@ -13,7 +13,7 @@ namespace opengl
         Loader();
         ~Loader();
 
-        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, const std::vector<float>& uvs);
+        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, std::vector<float>& uvs);
 
         GLuint loadTexture(const std::string& filename);
 

@@ -36,11 +36,17 @@ namespace opengl
         RawModel& model = *texturedModel.getModel();
         glBindVertexArray(model.getVao());
         glEnableVertexAttribArray(0);
+        glEnableVertexAttribArray(1);
+
+        // tell opengl which texture we want to render
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, texturedModel.getTexture()->getId());
 
         // glDrawArrays(GL_TRIANGLES, 0, model.getVertexCount());
         glDrawElements(GL_TRIANGLES, model.getVertexCount(), GL_UNSIGNED_INT, 0);
 
         glDisableVertexAttribArray(0);
+        glDisableVertexAttribArray(1);
         glBindVertexArray(0);
     }
 

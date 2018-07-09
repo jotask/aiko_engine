@@ -248,7 +248,6 @@
     <ClInclude Include="src\engine\utils.h" />
     <ClInclude Include="src\engine\physics\components\wind.h" />
     <ClInclude Include="src\engine\threads\threadSystem.h" />
-    <ClInclude Include="src\opengl\shaders\shader_types.h" />
     <ClInclude Include="src\opengl\shaders\shader_utils.h" />
     <ClInclude Include="src\opengl\shaders\static_shader.h" />
     <ClInclude Include="src\opengl\models\textured_model.h" />

@@ -28,14 +28,16 @@ namespace opengl
         for (const auto& text : m_textures) glDeleteTextures(1, &text);
     }
 
-    RawModel* Loader::loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, const std::vector<float>& uvs)
+    RawModel* Loader::loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, std::vector<float>& uvs)
     {
         GLuint vao;
         vao = createVao();
 
         bindIndicesVbo(indices);
  
-        storeDataInAttributeList(0, positions);
+        storeDataInAttributeList(0, 3, positions);
+        storeDataInAttributeList(1, 2, uvs);
+
         unbindVao();
         return new RawModel(vao, indices.size());
     }
@@ -89,12 +91,26 @@ namespace opengl
         {
             stbi_image_free(data);
             std::cerr << "Unable to load texture: " << filename.c_str() << std::endl;
+            assert(true);
+            assert(false);
             return -1;
         }
 
+        GLuint texture;
+
+        glGenTextures(1, &texture);
+        glBindTexture(GL_TEXTURE_2D, texture);
+
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+        glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+
         stbi_image_free(data);
 
-        return  -1;
+        return texture;
 
     }
 

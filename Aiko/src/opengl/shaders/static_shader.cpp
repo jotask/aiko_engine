@@ -21,6 +21,7 @@ namespace aiko
     void StaticShader::bindAttributes()
     {
         ShaderProgram::bindAttribute(0u, "position");
+        ShaderProgram::bindAttribute(1u, "textureCoords");
     }
 
 }
