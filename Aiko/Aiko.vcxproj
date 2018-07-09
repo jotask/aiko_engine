@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\lpng1634;C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\lpng1634;C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -163,6 +163,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\opengl\stb_image.c" />
     <ClCompile Include="src\opengl\textures\model_texture.cpp" />
     <ClCompile Include="src\opengl\shaders\shader_program.cpp" />
     <ClCompile Include="src\opengl\shaders\shader.cpp" />
@@ -205,6 +206,7 @@
     <ClCompile Include="src\opengl\models\textured_model.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\opengl\stb_image.h" />
     <ClInclude Include="src\opengl\textures\model_texture.h" />
     <ClInclude Include="src\opengl\shaders\shader_program.h" />
     <ClInclude Include="src\opengl\shaders\shader.h" />
