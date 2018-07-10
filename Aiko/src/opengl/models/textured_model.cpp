@@ -3,7 +3,7 @@
 namespace opengl
 {
 
-    TexturedModel::TexturedModel(RawModel* model, ModelTexture* texture)
+    TexturedModel::TexturedModel(RawModel* model, Texture* texture)
         : m_model(model)
         , m_texture(texture)
     {
@@ -12,7 +12,8 @@ namespace opengl
 
     TexturedModel::~TexturedModel()
     {
-
+        delete m_model;
+        delete m_texture;
     }
 
     RawModel* TexturedModel::getModel() const
@@ -20,7 +21,7 @@ namespace opengl
         return m_model;
     }
 
-    ModelTexture* TexturedModel::getTexture() const
+    Texture* TexturedModel::getTexture() const
     {
         return m_texture;
     }

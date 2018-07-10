@@ -7,11 +7,11 @@
 namespace opengl
 {
 
-    class ModelTexture
+    class Texture
     {
     public:
-        ModelTexture(GLuint id);
-        ~ModelTexture();
+        Texture(GLuint id);
+        ~Texture();
 
         const GLuint getId() const;
 

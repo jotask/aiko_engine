@@ -69,7 +69,6 @@ namespace aiko
             GLuint program = glCreateProgram();
             glAttachShader(program, vertShader);
             glAttachShader(program, fragShader);
-            glLinkProgram(program);
 
             glGetProgramiv(program, GL_LINK_STATUS, &result);
             glGetProgramiv(program, GL_INFO_LOG_LENGTH, &logLength);

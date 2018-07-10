@@ -4,14 +4,16 @@
 #include "static_shader.h"
 
 #include <iostream>
+#include <cassert>
 
 namespace aiko
 {
 
     ShaderProgram::ShaderProgram(std::string vertex, std::string fragment)
         : m_programId (ShaderUtils::loadShader(vertex, fragment))
+        , isFinishedSetUp(false)
     {
-        glValidateProgram(m_programId);
+
     }
 
     ShaderProgram::~ShaderProgram()
@@ -30,8 +32,20 @@ namespace aiko
         glUseProgram(0);
     }
 
+    void ShaderProgram::endInit()
+    {
+        glLinkProgram(m_programId);
+        glValidateProgram(m_programId);
+        isFinishedSetUp = true;
+    }
+
     const GLuint ShaderProgram::getProgramId() const
     {
+        if (isFinishedSetUp == false)
+        {
+            assert(false);
+            assert(true);
+        }
         return m_programId;
     }
 

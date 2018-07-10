@@ -28,12 +28,12 @@ namespace opengl
             3, 1, 2
         });
 
-        m_model = m_loader->loadToVao(vertices, indices, ModelTexture::textureCoords);
+        m_model = m_loader->loadToVao(vertices, indices, Texture::textureCoords);
 
         const std::string tmp("image.png");
-        ModelTexture* modelTexture = new ModelTexture(m_loader->loadTexture(tmp));
-        
-        m_textureModel = new TexturedModel(m_model, modelTexture);
+        const auto text = m_loader->loadTexture(tmp);
+        Texture* texture = new Texture(text);
+        m_textureModel = new TexturedModel(m_model, texture);
 
     }
 

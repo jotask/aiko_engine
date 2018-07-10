@@ -3,7 +3,7 @@
 #include <GL/glew.h>
 
 #include "raw_model.h"
-#include "../textures/model_texture.h"
+#include "../textures/texture.h"
 
 namespace opengl
 {
@@ -11,15 +11,15 @@ namespace opengl
     class TexturedModel
     {
     public:
-        TexturedModel(RawModel* model, ModelTexture* texture);
+        TexturedModel(RawModel* model, Texture* texture);
         ~TexturedModel();
 
         RawModel* getModel() const;
-        ModelTexture* getTexture() const;
+        Texture* getTexture() const;
 
     private:
         RawModel *      m_model;
-        ModelTexture*   m_texture;
+        Texture*        m_texture;
     };
 
 }

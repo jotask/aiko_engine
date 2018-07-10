@@ -11,6 +11,7 @@ namespace aiko
         : ShaderProgram(PATH + "vertex.txt", PATH + "fragment.txt")
     {
         bindAttributes();
+        ShaderProgram::endInit();
     }
 
     StaticShader::~StaticShader()
