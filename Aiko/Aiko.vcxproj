@@ -90,7 +90,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\assimp\include;C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>
@@ -108,7 +108,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions);_CRT_SECURE_NO_DEPRECATE</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Jose\Code\API\assimp\include;C:\Users\Jose\Code\API\glew\include;C:\Users\Jose\Code\API\bulletphysics\src;C:\Users\Jose\Code\API\Box2D;C:\Users\Jose\Code\API\SFML\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
     </ClCompile>
     <Link>

@@ -15,8 +15,6 @@ namespace opengl
 
         const GLuint getId() const;
 
-        static std::vector<float> textureCoords;
-
     private:
         const GLuint m_textureId;
     };

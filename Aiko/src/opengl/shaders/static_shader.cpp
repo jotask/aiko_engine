@@ -2,7 +2,7 @@
 
 #include <string>
 
-namespace aiko
+namespace opengl
 {
 
     static const std::string PATH = "C:\\Users\\Jose\\Code\\aiko_engine\\Aiko\\src\\opengl\\shaders\\";

@@ -3,27 +3,25 @@
 namespace opengl
 {
 
-    TexturedModel::TexturedModel(RawModel* model, Texture* texture)
-        : m_model(model)
-        , m_texture(texture)
+    TexturedModel::TexturedModel(std::unique_ptr<RawModel>& model, std::unique_ptr<Texture>& texture)
+        : m_model(std::move(model))
+        , m_texture(std::move(texture))
     {
 
     }
 
     TexturedModel::~TexturedModel()
     {
-        delete m_model;
-        delete m_texture;
     }
 
     RawModel* TexturedModel::getModel() const
     {
-        return m_model;
+        return m_model.get();
     }
 
     Texture* TexturedModel::getTexture() const
     {
-        return m_texture;
+        return m_texture.get();
     }
 
 }

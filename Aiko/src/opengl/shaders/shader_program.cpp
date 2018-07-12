@@ -6,7 +6,7 @@
 #include <iostream>
 #include <cassert>
 
-namespace aiko
+namespace opengl
 {
 
     ShaderProgram::ShaderProgram(std::string vertex, std::string fragment)

@@ -1,6 +1,7 @@
 #pragma once
 
 #include <vector>
+#include <memory>
 
 #include "models/raw_model.h"
 
@@ -13,7 +14,9 @@ namespace opengl
         Loader();
         ~Loader();
 
-        RawModel* loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, std::vector<float>& uvs);
+        std::unique_ptr<RawModel> loadToVao(std::vector<GLfloat>& positions, std::vector<GLuint>& indices, std::vector<float>& uvs);
+
+        std::unique_ptr<RawModel> loadTest();
 
         GLuint loadTexture(const std::string& filename);
 

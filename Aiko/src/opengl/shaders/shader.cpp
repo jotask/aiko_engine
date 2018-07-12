@@ -1,6 +1,6 @@
 #include "shader.h"
 
-namespace aiko
+namespace opengl
 {
 
     Shader::Shader()

@@ -2,7 +2,7 @@
 
 #include "shader_program.h"
 
-namespace aiko
+namespace opengl
 {
 
     class StaticShader : public ShaderProgram

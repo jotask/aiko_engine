@@ -4,7 +4,7 @@
 
 #include <GL/glew.h>
 
-namespace aiko
+namespace opengl
 {
 
     class ShaderProgram

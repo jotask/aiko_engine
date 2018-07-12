@@ -1,6 +1,6 @@
 #pragma once
 
-namespace aiko
+namespace opengl
 {
 
     class ShaderProgram;

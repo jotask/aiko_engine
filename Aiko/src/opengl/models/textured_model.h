@@ -1,6 +1,7 @@
 #pragma once
 
 #include <GL/glew.h>
+#include <memory>
 
 #include "raw_model.h"
 #include "../textures/texture.h"
@@ -11,15 +12,17 @@ namespace opengl
     class TexturedModel
     {
     public:
-        TexturedModel(RawModel* model, Texture* texture);
+        TexturedModel(std::unique_ptr<RawModel>& model, std::unique_ptr<Texture>& texture);
         ~TexturedModel();
 
         RawModel* getModel() const;
         Texture* getTexture() const;
 
     private:
-        RawModel *      m_model;
-        Texture*        m_texture;
+
+        std::unique_ptr<RawModel> m_model;
+        std::unique_ptr<Texture> m_texture;
+
     };
 
 }

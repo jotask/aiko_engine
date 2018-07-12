@@ -24,13 +24,12 @@ namespace opengl
 
     private:
 
-        Loader*      m_loader;
-        Renderer*    m_renderer;
+        std::unique_ptr<Loader>             m_loader;
+        std::unique_ptr<Renderer>           m_renderer;
+        std::unique_ptr<ShaderProgram>      m_shader;
 
-        RawModel*       m_model;
-        TexturedModel*   m_textureModel;
+        std::unique_ptr<TexturedModel>      m_textureModel;
 
-        aiko::ShaderProgram* m_shader;
 
     };
 
