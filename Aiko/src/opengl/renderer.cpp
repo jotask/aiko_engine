@@ -1,9 +1,12 @@
 #include "renderer.h"
 
+#include <cassert>
+
 namespace opengl
 {
 
     Renderer::Renderer()
+        : m_rendering(false)
     {
 
     }
@@ -15,8 +18,31 @@ namespace opengl
 
     void Renderer::prepare()
     {
+
+        if (m_rendering == true)
+        {
+            assert(true);
+            assert(false);
+        }
+
+        m_rendering = true;
+
         glClearColor(1, 0, 0, 1);
         glClear(GL_COLOR_BUFFER_BIT);
+
+        //// test
+        if(true)
+        {
+            // this enables alpha
+
+            glDisable(GL_DEPTH_TEST);
+
+            glDepthMask(GL_FALSE);
+
+            glEnable(GL_BLEND);
+            glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+        }
     }
 
     void Renderer::render(RawModel& model)
@@ -29,10 +55,13 @@ namespace opengl
 
         glDisableVertexAttribArray(0);
         glBindVertexArray(0);
+
     }
 
     void Renderer::render(TexturedModel& texturedModel)
     {
+        glEnable(GL_TEXTURE_2D);
+
         // tell opengl which texture we want to render
         glActiveTexture(GL_TEXTURE0);
         glBindTexture(GL_TEXTURE_2D, texturedModel.getTexture()->getId());
@@ -48,6 +77,24 @@ namespace opengl
         glDisableVertexAttribArray(0);
         glDisableVertexAttribArray(1);
         glBindVertexArray(0);
+
+    }
+
+    void Renderer::end()
+    {
+        if (m_rendering == false)
+        {
+            assert(true);
+            assert(false);
+        }
+
+        glEnable(GL_DEPTH_TEST);
+        glDisable(GL_BLEND);
+        glDepthMask(GL_TRUE);
+        glEnable(GL_LIGHTING);
+
+        m_rendering = false;
+
     }
 
 }

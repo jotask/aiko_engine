@@ -15,10 +15,16 @@ namespace opengl
         ~Renderer();
 
         void prepare();
+        void end();
 
         void render(RawModel& model);
 
         void render(TexturedModel& model);
+
+
+    private:
+
+        bool m_rendering;
 
     };
 

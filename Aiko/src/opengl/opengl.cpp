@@ -44,28 +44,14 @@ namespace opengl
             m_textureModel = std::make_unique<TexturedModel>(model, texture);
         }
 
+        // debug
         if(true)
         {
-            // set up vertex data (and buffer(s)) and configure vertex attributes
-            // ------------------------------------------------------------------
-            GLfloat vertices[] = {
-                // positions          // colors           // texture coords
-                0.5f,  0.5f, 0.0f,   1.0f, 0.0f, 0.0f,   1.0f, 1.0f, // top right
-                0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f,   1.0f, 0.0f, // bottom right
-                -0.5f, -0.5f, 0.0f,   0.0f, 0.0f, 1.0f,   0.0f, 0.0f, // bottom left
-                -0.5f,  0.5f, 0.0f,   1.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
-            };
-            unsigned int indices[] = {
-                0, 1, 3, // first triangle
-                1, 2, 3  // second triangle
-            };
-
             const std::string tmp("image.png");
             const auto text = m_loader->loadTexture(tmp);
             auto model = m_loader->loadTest();
             auto texture = std::make_unique<Texture>(text);
             m_textureModel = std::make_unique<TexturedModel>(model, texture);
-
         }
 
     }
@@ -86,6 +72,7 @@ namespace opengl
 
         m_renderer->prepare();
         m_renderer->render(*m_textureModel);
+        m_renderer->end();
 
         m_shader->stop();
     }
